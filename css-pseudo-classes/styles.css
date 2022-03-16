@@ -18,6 +18,10 @@ th {
   color: white;
 }
 
-tr.odd {
+/* tr.odd {
+  background-color: lightgray;
+} */
+
+tr:nth-child(odd) {
   background-color: lightgray;
 }
