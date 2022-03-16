@@ -1,0 +1,10 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 550%;
+}
+
+h1 {
+  /* font-family: 'Noto Sans JP', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+  color: green
+}
