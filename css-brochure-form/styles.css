@@ -27,51 +27,51 @@ label {
   font-weight: 500;
   font-size: 14px;
   padding-left: 10px;
+}
 
-  input {
-    width: 100%;
-    padding: 12.5px;
-    margin-top: 2.5px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    box-sizing: border-box;
-  }
+input {
+  width: 100%;
+  padding: 12.5px;
+  margin-top: 2.5px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+}
 
-  button {
-    text-transform: uppercase;
-    background-color: #ec5f59;
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 16px;
-    float: right;
-  }
+button {
+  text-transform: uppercase;
+  background-color: #ec5f59;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 16px;
+  float: right;
+}
 
-  option {
-    width: 100%;
-  }
+option {
+  width: 100%;
+}
 
-  select {
-    width: 100%;
-    padding: 12.5px;
-    margin-top: 2.5px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    background-color: #f3f3f3;
-    font-family: AtlasGrotesk, sans-serif;
-    font-style: normal;
-    font-weight: 300;
-  }
+select {
+  width: 100%;
+  padding: 12.5px;
+  margin-top: 2.5px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  background-color: #f3f3f3;
+  font-family: AtlasGrotesk, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
 
-  ::placeholder {
-    color: rgb(173 173 173);
-    font-family: AtlasGrotesk, sans-serif;
-    font-style: normal;
-    font-weight: 300;
-  }
+::placeholder {
+  color: rgb(173 173 173);
+  font-family: AtlasGrotesk, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
 
-  .box {
-    display: flex;
-    justify-content: end;
-  }
+.box {
+  display: flex;
+  justify-content: end;
 }
