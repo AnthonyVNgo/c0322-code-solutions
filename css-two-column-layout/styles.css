@@ -1,0 +1,95 @@
+h1 {
+  text-transform: uppercase;
+  font-family: Karla, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  margin: default;
+  letter-spacing: 0.3rem;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-family: Karla, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+}
+
+p {
+  margin: 10px 0;
+  font-family: Karla, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  color: grey;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 75%;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  flex-basis: 50%;
+  display: flex;
+
+  /* background-color: lightblue; */
+  padding: 0 25px;
+  height: 25vh;
+}
+
+.vcenter {
+  align-items: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.hcenter {
+  justify-content: center;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.column-one-fourth {
+  align-self: flex-start;
+  flex-basis: 25%;
+}
+
+.column-three-fourths {
+  flex-basis: 75%;
+  padding: 40px 0
+
+  /* align-self: flex-end; */
+
+  /* align-self: center; */
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
+.column-two-thirds {
+  flex-basis: 75%;
+}
+
+button {
+  text-transform: uppercase;
+  color: #d24c45;
+  border: solid 2px #d24c45;
+  background-color: white;
+  padding: 10px 40px;
+}
+
+.biggervh {
+  height: 65vh;
+}
