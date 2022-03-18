@@ -13,7 +13,7 @@ h3 {
   font-family: Karla, sans-serif;
   font-style: normal;
   font-weight: 700;
-  margin: 0;
+  padding-top: 25px;
 }
 
 p {
@@ -38,8 +38,6 @@ p {
 .card {
   flex-basis: 50%;
   display: flex;
-
-  /* background-color: lightblue; */
   padding: 0 25px;
   height: 25vh;
 }
@@ -61,17 +59,13 @@ p {
 }
 
 .column-one-fourth {
-  align-self: flex-start;
   flex-basis: 25%;
 }
 
 .column-three-fourths {
   flex-basis: 75%;
-  padding: 40px 0
 
-  /* align-self: flex-end; */
-
-  /* align-self: center; */
+  /* padding: 40px 0; */
 }
 
 .column-half {
