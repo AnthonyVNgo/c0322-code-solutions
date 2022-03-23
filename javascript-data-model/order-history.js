@@ -40,9 +40,9 @@ var products = {
 };
 
 var orderHistory = [
-  {
+  [{
     orderNumber: 114,
-    products: books[0],
+    products: [books[0]],
     total: '$34.00',
 
     numberOfItems: 1,
@@ -52,8 +52,15 @@ var orderHistory = [
   },
 
   {
+    title: 'JavaScript for impatient programmers',
+    author: 'Rauschmayer, Dr. Axel',
+    returnWindow: 'Sep 7, 2020',
+    subtotal: '$31.55'
+  }],
+
+  [{
     orderNumber: 113,
-    products: books[1],
+    products: [books[1]],
     total: '$44.53',
 
     numberOfItems: 1,
@@ -63,8 +70,15 @@ var orderHistory = [
   },
 
   {
+    title: 'The Timeless Way of Building',
+    author: 'Alexander, Christopher',
+    returnWindow: 'Aug 19, 2020',
+    subtotal: '$41.33'
+  }],
+
+  [{
     orderNumber: 1141,
-    products: electronics[0],
+    products: [electronics[0]],
     total: '$17.22',
 
     numberOfItems: 1,
@@ -74,6 +88,12 @@ var orderHistory = [
   },
 
   {
+    product: 'Gamecube Controller Adapter',
+    returnWindow: 'Aug 5, 2020',
+    subtotal: '$15.98'
+  }],
+
+  [{
     orderNumber: 1132,
     products: [electronics[1], books[2]],
     total: '$138.93',
@@ -82,7 +102,19 @@ var orderHistory = [
     ordered: 'July 3, 2020',
     shipTo: 'JS Masher',
     delivered: 'Jul 5, 2020'
-  }
-];
+  },
 
-console.log(orderHistory);
+  {
+    title: 'The Art of Sql',
+    author: 'Faroult Stephane',
+    returnWindow: 'Aug 4, 2020',
+    subtotal: '$33.99'
+  },
+
+  {
+    product: 'Gamecube Controller SSB edition',
+    returnWindow: 'Aug 4, 2020',
+    subtotal: '$94.95'
+  }]
+
+];
