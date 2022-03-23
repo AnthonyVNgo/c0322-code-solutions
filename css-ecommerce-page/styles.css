@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+}
+
+.jc-sa {
+  justify-content: space-around;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.cards {
+  flex-basis: 15%;
+  margin: 0 1%;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.light-grey {
+  color: lightgrey;
+}
+
+.highlite {
+  background-color: rgb(245 234 230);
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
+.r-height {
+  height: 35vh;
+}
