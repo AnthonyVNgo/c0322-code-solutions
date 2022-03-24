@@ -31,7 +31,7 @@
 .img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .ta-center {
@@ -42,8 +42,10 @@
   color: lightgrey;
 }
 
-.highlite {
-  background-color: rgb(245 234 230);
+.current-price {
+  background-color: rgb(255 223 223);
+  border-radius: 5px;
+  padding: 2.5px;
 }
 
 .strikethrough {
