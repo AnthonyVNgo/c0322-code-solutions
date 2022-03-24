@@ -1,120 +1,71 @@
-var books = [
+var orderHistory =
+[
   {
-    title: 'JavaScript for impatient programmers',
-    author: 'Rauschmayer, Dr. Axel',
-    returnWindow: 'Sep 7, 2020',
-    subtotal: '$31.55'
+    totalPrice: '$34.00',
+    orderPlaced: '08/04/20',
+    orderNumber: 114394,
+    itemsPurchased:
+      [{
+        type: 'book',
+        item: 'JavaScript for Impatient Programmers',
+        author: 'Dr. Axel',
+        price: '$31.55',
+        returnWindow: '09/07/20',
+        img: 'fakeurlgoeshere'
+      }]
   },
 
   {
-    title: 'The Timeless Way of Building',
-    author: 'Alexander, Christopher',
-    returnWindow: 'Aug 19, 2020',
-    subtotal: '$41.33'
+    totalPrice: '$44.53',
+    orderPlaced: '07/19/20',
+    orderNumber: 113998,
+    itemsPurchased:
+      [{
+        type: 'book',
+        item: 'The Timeless Way of Building',
+        author: 'Alexander, Christopher',
+        price: '$41.33',
+        returnWindow: '08/18/20',
+        img: 'fakeurlgoeshere'
+      }]
   },
 
   {
-    title: 'The Art of Sql',
-    author: 'Faroult Stephane',
-    returnWindow: 'Aug 4, 2020',
-    subtotal: '$33.99'
+    totalPrice: '$17.22',
+    orderPlaced: '07/04/20',
+    orderNumber: 114287,
+    itemsPurchased:
+      [{
+        type: 'electronic',
+        item: 'GC adapter',
+        author: null,
+        price: '$15.98',
+        returnWindow: '08/05/20',
+        img: 'fakeurlgoeshere'
+      }]
+  },
+
+  {
+    totalPrice: '$138.93',
+    orderPlaced: '07/03/20',
+    orderNumber: 113288,
+    itemsPurchased:
+      [{
+        type: 'electronic',
+        item: 'GC controller',
+        author: null,
+        price: '$94.95',
+        returnWindow: '08/04/20',
+        img: 'fakeurlgoeshere'
+      },
+
+      {
+        type: 'book',
+        item: 'The Art of Sql',
+        author: 'Faroult Stephane',
+        price: '$33.99',
+        returnWindow: '08/04/20',
+        img: 'fakeurlgoeshere'
+      }]
   }
-];
-
-var electronics = [
-  {
-    product: 'Gamecube Controller Adapter',
-    returnWindow: 'Aug 5, 2020',
-    subtotal: '$15.98'
-  },
-
-  {
-    product: 'Gamecube Controller SSB edition',
-    returnWindow: 'Aug 4, 2020',
-    subtotal: '$94.95'
-  }
-];
-
-var products = {
-  category: [books, electronics]
-};
-
-var orderHistory = [
-  [{
-    orderNumber: 114,
-    products: [books[0]],
-    total: '$34.00',
-
-    numberOfItems: 1,
-    ordered: 'August 4, 2020',
-    shipTo: 'JS Masher',
-    delivered: 'Aug 8, 2020'
-  },
-
-  {
-    title: 'JavaScript for impatient programmers',
-    author: 'Rauschmayer, Dr. Axel',
-    returnWindow: 'Sep 7, 2020',
-    subtotal: '$31.55'
-  }],
-
-  [{
-    orderNumber: 113,
-    products: [books[1]],
-    total: '$44.53',
-
-    numberOfItems: 1,
-    ordered: 'July 19, 2020',
-    shipTo: 'JS Masher',
-    delivered: 'July 20, 2020'
-  },
-
-  {
-    title: 'The Timeless Way of Building',
-    author: 'Alexander, Christopher',
-    returnWindow: 'Aug 19, 2020',
-    subtotal: '$41.33'
-  }],
-
-  [{
-    orderNumber: 1141,
-    products: [electronics[0]],
-    total: '$17.22',
-
-    numberOfItems: 1,
-    ordered: 'July 4, 2002',
-    shipTo: 'JS Masher',
-    delivered: 'Jul 7, 2020'
-  },
-
-  {
-    product: 'Gamecube Controller Adapter',
-    returnWindow: 'Aug 5, 2020',
-    subtotal: '$15.98'
-  }],
-
-  [{
-    orderNumber: 1132,
-    products: [electronics[1], books[2]],
-    total: '$138.93',
-
-    numberOfItems: 2,
-    ordered: 'July 3, 2020',
-    shipTo: 'JS Masher',
-    delivered: 'Jul 5, 2020'
-  },
-
-  {
-    title: 'The Art of Sql',
-    author: 'Faroult Stephane',
-    returnWindow: 'Aug 4, 2020',
-    subtotal: '$33.99'
-  },
-
-  {
-    product: 'Gamecube Controller SSB edition',
-    returnWindow: 'Aug 4, 2020',
-    subtotal: '$94.95'
-  }]
-
 ];
