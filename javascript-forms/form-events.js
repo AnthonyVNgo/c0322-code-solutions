@@ -23,7 +23,13 @@ var userMessage = document.querySelector('#user-message');
 console.log(userMessage);
 
 userName.addEventListener('focus', handleFocus);
+userName.addEventListener('blur', handleBlur);
+userName.addEventListener('input', handleInput);
 
+userEmail.addEventListener('focus', handleFocus);
 userEmail.addEventListener('blur', handleBlur);
+userEmail.addEventListener('input', handleInput);
 
+userMessage.addEventListener('focus', handleFocus);
+userMessage.addEventListener('blur', handleBlur);
 userMessage.addEventListener('input', handleInput);

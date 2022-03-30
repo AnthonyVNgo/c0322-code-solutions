@@ -1,10 +1,10 @@
 var contactForm = document.querySelector('#contact-form');
 // console.log(contactForm);
 
-var valuesObject = {};
-
 function submit(event) {
   event.preventDefault();
+
+  var valuesObject = {};
   // console.log('bombs away');
 
   // var nameValue = contactForm.elements.name.value;
