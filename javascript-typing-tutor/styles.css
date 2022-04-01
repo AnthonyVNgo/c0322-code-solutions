@@ -15,10 +15,27 @@
   justify-content: center;
 }
 
-.align-self-center {
-  align-self: center;
+.align-items-center {
+  align-items: center;
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .height-100vh {
   height: 100vh;
+}
+
+.text-container {
+  height: fit-content;
+  width: fit-content;
+}
+
+span.true {
+  color: rgb(19 199 19);
+}
+
+span.false {
+  color: red;
 }
