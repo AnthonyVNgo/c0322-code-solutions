@@ -7,12 +7,12 @@ if (previousTodosJSON !== null) {
   todos = JSON.parse(previousTodosJSON);
 }
 
-function eventFunction(event) {
-  var todosJSON = JSON.stringify(todos);
-  localStorage.setItem('javascript-local-storage', todosJSON);
-}
+// function eventFunction(event) {
+//   var todosJSON = JSON.stringify(todos);
+//   localStorage.setItem('javascript-local-storage', todosJSON);
+// }
 
-window.addEventListener('beforeunload', eventFunction);
+// window.addEventListener('beforeunload', eventFunction);
 
 // function removeItem(event) {
 
