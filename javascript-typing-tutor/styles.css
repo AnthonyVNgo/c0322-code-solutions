@@ -32,10 +32,20 @@
   width: fit-content;
 }
 
-span.true {
-  color: rgb(19 199 19);
+span {
+  font-size: 60px;
 }
 
-span.false {
+.no-styles {
+  text-decoration: none;
+}
+
+.red {
   color: red;
+  text-decoration: underline;
+}
+
+.green {
+  color: greenyellow;
+  text-decoration: underline;
 }

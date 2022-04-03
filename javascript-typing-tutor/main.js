@@ -1,30 +1,48 @@
+var pElement = document.querySelector('.change-me');
+// console.log('The text content of the p element:', pElement.textContent);
 
-// var pElement = document.querySelector('.change-me');
-// console.log(pElement.textContent);
+var pElementText = pElement.textContent;
+// console.log('pElement.textContent is assigned to the variable pElement and returns the value:', pElementText);
 
-// var pElementText = pElement.textContent;
-// console.log(pElementText);
+var pElementTextSplit = pElementText.split('');
+// console.log('the split method of the pElementText object is called and the return of the method is assigned to the variable, pElementTextSplit:', pElementTextSplit);
+// console.log('the length of pElementTextSplit:', pElementTextSplit.length);
 
-// var pElementTextSplit = pElementText.split('');
-// console.log(pElementTextSplit);
+var container = document.querySelector('.text-column');
 
-// function matchedKeys(event) {
-//   if () {
-//     // if key down doesn't match pElementTextSplit[i], then change char color to red
-//   } // else if key down matches pElementTextSplit[i], then change char color to green and i++?
-// }
+// console.log('container.childNodes value:', container.childNodes);
+// console.log('container.childNodes[0] value:', container.childNodes[0]);
+container.childNodes[0].remove();
 
-// document.addEventListener('keydown')
+// loop
 
-// console.log(textIndexing[0]);
+for (var j = 0; j < pElementTextSplit.length; j++) {
+  var spanElement = document.createElement('span');
+  spanElement.textContent = pElementTextSplit[j].charAt(0);
+  // console.log(spanElement.textContent);
+  container.appendChild(spanElement);
+  pElement.remove();
+}
 
-// function matchKeys(event) {
+// what is my container.childnodes???? wtf
+// event function
 
-//   for (var i = 0; i < textIndexing.length; i++) {
-//     if (keyEvent === textIndexing[i]) {
-//       className = 'red';// change class name for span
-//     }
-//   }
-// }
+var i = 0;
 
-// document.addEventListener('keydown', matchKeys);
+function matchKeys(event) {
+  var key = event.key;
+  // console.log(key);
+
+  if (key !== pElementTextSplit[i]) {
+    // console.log(false);
+    container.childNodes[i + 1].className = 'red';
+  } else if (key === pElementTextSplit[i]) {
+    // console.log(true);
+    // console.log(i);
+    container.childNodes[i + 1].className = 'green';
+    i++;
+  }
+
+}
+
+document.addEventListener('keydown', matchKeys);
