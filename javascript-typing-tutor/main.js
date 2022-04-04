@@ -24,15 +24,14 @@ for (var j = 0; j < pElementTextSplit.length; j++) {
   pElement.remove();
 }
 
-// what is my container.childnodes???? wtf
-// event function
+// what is my container.childnodes???
 
 var i = 0;
+container.childNodes[i + 1].className = 'no-styles';
 
 function matchKeys(event) {
   var key = event.key;
   // console.log(key);
-
   if (key !== pElementTextSplit[i]) {
     // console.log(false);
     container.childNodes[i + 1].className = 'red';

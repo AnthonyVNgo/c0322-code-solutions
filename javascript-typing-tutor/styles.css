@@ -37,7 +37,8 @@ span {
 }
 
 .no-styles {
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: black;
 }
 
 .red {
@@ -47,5 +48,4 @@ span {
 
 .green {
   color: greenyellow;
-  text-decoration: underline;
 }
