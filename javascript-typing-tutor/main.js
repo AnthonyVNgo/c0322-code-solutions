@@ -40,6 +40,7 @@ function matchKeys(event) {
     // console.log(i);
     container.childNodes[i + 1].className = 'green';
     i++;
+    container.childNodes[i + 1].className = 'no-styles';
   }
 
 }
