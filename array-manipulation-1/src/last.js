@@ -4,3 +4,6 @@ function last(array) {
 
   return array[lastIndex];
 }
+
+// we want our code to do somethign similar to the previous function, but with the last element of the array
+// to do this, we would use the .length property - 1

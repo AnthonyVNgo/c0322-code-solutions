@@ -8,3 +8,6 @@ function initial(array) {
   }
   return newArray;
 }
+
+// we want our code to return all elements within the array except for the last element
+// so we can run a for loop and stop it beore it reaches the last array element
