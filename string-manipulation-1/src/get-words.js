@@ -6,12 +6,6 @@
 
 // the above didn't account for if (KEYWORD IF, always think try to catch yourself to see if you use the word if in your description because that means you'll use a conditional) the string was ''
 
-// function getWords(string) {
-//   return !string ? [] : string.split(' ');
-// }
-
-// above code worked, but don't fully grasp the mechanics of what's happening. Learned that I needed a conditional because of this though
-
 // create a function that first check if a string is passed in as an argument
 // if a string is passed in as an argument, then we can use the split method string.split(' ') to split the string of words based on the spaces and assign them to a new variable
 // what does capital String mean ?
