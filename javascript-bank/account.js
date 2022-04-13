@@ -13,7 +13,8 @@ Account.prototype.deposit = function (amount) {
     var deposit = new Transaction('deposit', amountValue);
     this.transactions.push(deposit);
     return true;
-  } return false;
+  }
+  return false;
 };
 
 Account.prototype.withdraw = function (amount) {
@@ -23,7 +24,8 @@ Account.prototype.withdraw = function (amount) {
     var withdrawal = new Transaction('withdrawal', amountValue);
     this.transactions.push(withdrawal);
     return true;
-  } return false;
+  }
+  return false;
 };
 
 Account.prototype.getBalance = function () {
@@ -45,5 +47,6 @@ Account.prototype.getBalance = function () {
     return balance;
   } else if (balance === 0 || this.transactions === []) {
     return 0;
-  } return balance;
+  }
+  return balance;
 };
