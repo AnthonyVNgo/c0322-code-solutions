@@ -12,15 +12,20 @@ function Pokemon(name, url) {
 var bulbasaur = new Pokemon('Bulbasaur', 'images/001.png');
 var charmander = new Pokemon('Charmander', 'images/004.png');
 var squirtle = new Pokemon('Squirtle', 'images/007.png');
+var pikachu = new Pokemon('Pikachu', 'images/025.png');
+var jiggly = new Pokemon('JigglyPuff', 'images/039.png');
 
-var imageArr = [bulbasaur, charmander, squirtle];
+var imageArr = [bulbasaur, charmander, squirtle, pikachu, jiggly];
+var dotsArr = [];
 
 var intervalID = setInterval(autoNextImage, 3000);
 
 for (var i = 0; i < imageArr.length; i++) {
   var dotElements = document.createElement('i');
   dotElements.className = 'fa-circle-dot fa-solid';
+  dotElements.setAttribute('data-id', 0);
   dotsContainerElement.appendChild(dotElements);
+  dotsArr.push(dotElements);
 }
 
 // prev next functions
@@ -28,17 +33,15 @@ for (var i = 0; i < imageArr.length; i++) {
 function previousImage(event) {
   if (currentID === 0) {
     currentID = imageArr.length - 1;
-    // console.log(currentID);
     centerElement.src = imageArr[currentID].urlKey;
   } else {
     currentID--;
-    // console.log(currentID);
     centerElement.textContent = currentID;
     centerElement.src = imageArr[currentID].urlKey;
   }
+  movingDots();
   stopNextImage();
   restartNextImage();
-  // setTimeout(restartNextImage, 0);
 }
 
 leftButtonElement.addEventListener('click', previousImage);
@@ -47,22 +50,18 @@ function autoNextImage(event) {
 
   if (currentID === imageArr.length - 1) {
     currentID = 0;
-    // console.log(currentID);
-    centerElement.textContent = currentID;
     centerElement.src = imageArr[currentID].urlKey;
   } else {
     currentID++;
-    // console.log(currentID);
-    centerElement.textContent = currentID;
     centerElement.src = imageArr[currentID].urlKey;
   }
+  movingDots();
 }
 
 function nextImage() {
   autoNextImage();
   stopNextImage();
   restartNextImage();
-  // setTimeout(restartNextImage, 0);
 }
 
 rightButtonElement.addEventListener('click', nextImage);
@@ -76,12 +75,24 @@ function restartNextImage() {
 }
 
 function dotsClick(event) {
-  // console.log(event.target.tagName);
-  if (event.target.tagName === 'I') {
-    // console.log(true);
-  }
-  // event.target.className = 'fa-circle fa-solid';
 
+  if (event.target.tagName === 'I') {
+    currentID = dotsArr.indexOf(event.target);
+    centerElement.src = imageArr[currentID].urlKey;
+    movingDots();
+    stopNextImage();
+    restartNextImage();
+  }
 }
 
 dotsContainerElement.addEventListener('click', dotsClick);
+
+function movingDots() {
+  for (var i = 0; i < dotsContainerElement.children.length; i++) {
+    dotsContainerElement.children[i].className = 'fa-circle-dot fa-solid';
+
+    if (currentID === i) {
+      dotsContainerElement.children[currentID].className = 'fa-circle fa-solid';
+    }
+  }
+}
