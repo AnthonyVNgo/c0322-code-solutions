@@ -13,10 +13,10 @@ xhr.addEventListener('load', function () {
   console.log(xhr.status);
   console.log(xhr.response);
 
-  // review
   var users = xhr.response;
-  for (var i = 0; i < users.lenght; i++) {
+  for (var i = 0; i < users.length; i++) {
     var user = users[i];
+    console.log(user);
     var li = document.createElement('li');
     li.textContent = user.name;
     userListElement.appendChild(li);
