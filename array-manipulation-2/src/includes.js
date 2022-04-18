@@ -7,12 +7,5 @@ function includes(array, value) {
       return true;
     }
   }
-
-  if (i === array.length) {
-    return false;
-  }
-
-  if (i === 0) {
-    return false;
-  }
+  return false;
 }
