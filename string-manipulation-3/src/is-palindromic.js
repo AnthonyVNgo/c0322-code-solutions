@@ -1,19 +1,14 @@
 /* exported isPalindromic */
 function isPalindromic(string) {
-  // var split1 = string.split('');
-  var split2 = string.split('');
-  // console.log(split2);
+  var trimmed = string.replace(' ', '');
+  var split2 = trimmed.split('');
 
   var reverse = split2.reverse();
-  // console.log(reverse);
-
   var joined = reverse.join('');
-  // console.log(joined);
-  // console.log(string);
 
-  if (joined === string) {
+  if (joined === trimmed) {
     return true;
-  } else if (joined !== string) {
+  } else if (joined !== trimmed) {
     return false;
   }
 }
