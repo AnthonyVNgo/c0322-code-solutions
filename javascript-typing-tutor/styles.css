@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.height-100vh {
+  height: 100vh;
+}
+
+.text-container {
+  height: fit-content;
+  width: fit-content;
+}
+
+span {
+  font-size: 60px;
+}
+
+.underline {
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+
+.red {
+  color: red;
+  text-decoration: underline;
+}
+
+.green {
+  color: greenyellow;
+}
