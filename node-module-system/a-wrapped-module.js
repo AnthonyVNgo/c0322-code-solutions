@@ -1,6 +1,6 @@
 console.log(`this is the exports variable ${exports}`);
 console.log('this is the value of exports variable:', exports);
-console.log('this is the type of for exports', typeof exports);
+console.log('this is the type of for exports:', typeof exports);
 
 console.log('this is the value of require variable:', require);
 console.log('this is the type of for require:', typeof require);
