@@ -1,5 +1,5 @@
-const dataJSONObject = require('./data.json');
 const fs = require('fs');
+const dataJSONObject = require('./data.json');
 const operation = process.argv[2];
 const notes = dataJSONObject.notes;
 const nextID = dataJSONObject.nextId;
