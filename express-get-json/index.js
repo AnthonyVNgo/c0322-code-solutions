@@ -23,11 +23,6 @@ const grades =
   }
 };
 
-// app.get('/api/grades', (req, res) => {
-//   res.json(grades);
-//   // res.send();
-// });
-
 app.get('/api/grades', (req, res) => {
   const gradesArray = [];
   for (const id in grades) {
