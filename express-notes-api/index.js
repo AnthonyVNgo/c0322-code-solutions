@@ -55,13 +55,19 @@ app.post('/api/notes', (req, res) => {
     notes[nextId] = req.body;
     res.status(201).json(req.body);
     nextId++;
+  } else {
+    res.status(500).json({ error: 'an unexpected error occurred' });
+  }
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+  const id = req.params.id;
+
+  if (id < 0) {
+    res.status(400).json({ error: 'id must be a positive integer' });
+  } else if (id in notes) {
+    delete notes[req.params.id];
+    res.sendStatus(204);
   }
 
-  // if ('content' in req.body) {
-  //   req.body.id = nextId;
-  //   notes[nextId] = req.body;
-  //   res.status(201).json(req.body);
-  // } else if (('content' in req.body) === false) {
-  //   res.status(400).json({ error: 'content property is a required field' });
-  // }
 });
