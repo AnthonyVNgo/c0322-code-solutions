@@ -3,6 +3,8 @@ const app = express();
 let nextId = 5;
 app.use(express.json());
 
+// const jsonFile = require('./data.json');
+
 const notes =
 {
   1: {
