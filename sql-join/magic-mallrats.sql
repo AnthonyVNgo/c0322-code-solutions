@@ -9,4 +9,4 @@ join "films" using ("filmId")
 join "customers" using ("customerId")
 
 where
-  "rentalId" between 2494 and 2495;
+  "films"."title" = 'Magic Mallrats';
