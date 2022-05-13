@@ -11,7 +11,4 @@ const languages = [
 const doubled = numbers.map(element => element * 2);
 const prices = numbers.map(element => element.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
 const upperCased = languages.map(element => element.toUpperCase());
-const firstLetters = languages.map(element => {
-  const splitArr = element.split(' ');
-  return splitArr.map(element => element[0]);
-});
+const firstLetters = languages.map(language => language[0]);
