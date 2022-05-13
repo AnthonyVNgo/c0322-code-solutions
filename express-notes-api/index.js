@@ -11,7 +11,6 @@ app.listen(3000, () => {
 });
 
 app.get('/api/notes', (req, res) => {
-  // console.log(dataJson.nextId);
   const notesArray = [];
   for (const id in notes) {
     notesArray.push(notes[id]);
@@ -32,24 +31,22 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  // console.log('bang');
-  if ('content' in req.body) {
+  if (('content' in req.body) === false) {
+    res.status(400).json({ error: 'content property is a required field' });
+  } else if ('content' in req.body) {
     const input = req.body;
     const id = dataJson.nextId;
     notes[id] = input;
     notes[id].id = id;
     dataJson.nextId = id + 1;
-    res.status(201).json(req.body);
     fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
       if (err) {
         console.error(err);
         res.status(500).json({ error: 'An unexpected error occurred' });
       } else {
-        // console.log('New note has been created and saved!');
+        res.status(201).json(req.body);
       }
     });
-  } else if (('content' in req.body) === false) {
-    res.status(400).json({ error: 'content property is a required field' });
   }
 });
 
