@@ -1,3 +1,4 @@
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const account = [
@@ -25,8 +26,7 @@ const product = numbers.reduce((previousElement, currentElement) => {
   return previousElement * currentElement;
 });
 
-// net = callbackFn || reducer
-// net goes within reduce(reducer, init)
+// balance's reducer / callbackFn
 const net = (balance, transaction) => {
   if (transaction.type === 'deposit') {
     return balance + transaction.amount;
@@ -36,12 +36,18 @@ const net = (balance, transaction) => {
 
 const balance = account.reduce(net, 0);
 
-// const initialValue = 0;
-// const balance2 = account.reduce((previousElement, currentElement) => {
-//   if (currentElement.type === 'deposit') {
-//     return previousElement + currentElement.amount;
-//   }
-//   return previousElement - currentElement.amount;
-// }
-// , initialValue);
-// console.log('balance2', balance2);
+// composites' reducer / callbackFn
+const reducer = (prev, current) => {
+  return Object.assign(prev, current);
+};
+
+const composite = traits.reduce(reducer);
+
+// arrays can use the .reduce() method : array.reduce()
+// the .reduce() method takes in two arguments, the callbackFn / reducer and an optional initializer : array.reduce(callbackFn, [initializer])
+// the callbackFn / reducer itself takes in two arguments, in our case prevElement and currentElement : array.reduce((prevElement,currentElement) => {}, [initializer])
+
+// if we use the optional initializer -> previousElement = initializer  & currentElement = array[0] on the first call
+// // using optional initializer = starting at something other than array[0]
+// if we ~use the optional initializer -> previousElement = array[0] & currentElement = array[1] on the first call
+// // ~using optional initializer = starting at array[0]
