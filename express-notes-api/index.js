@@ -59,31 +59,46 @@ app.delete('/api/notes/:id', (req, res) => {
     delete notes[req.params.id];
     fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
       if (err) throw err;
-      // console.log(`Note ${req.params.id} deleted (Forever)!`);
     });
 
     res.sendStatus(204);
   }
 });
 
-// app.put('/api/notes/:id', (req, res) => {
-//   const id = req.params.id;
+app.delete('/api/notes/:id', (req, res) => {
+  const id = req.params.id;
 
-//   if (id < 0 || req.body.id < 0 || id !== req.body.id) {
-//     res.status(400).json({ error: 'both id parameter and req.body.id must be the same positive integer' });
-//   } else if (('content' in req.body) === false) {
-//     res.status(400).json({ error: 'content property is a required field' });
-//   } else if ((id in notes) === false) {
+  if (id < 0) {
+    res.status(400).json({ error: 'id must be a positive integer' });
+  } else if (id in notes) {
+    delete notes[req.params.id];
+    fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An unexpected error occurred' });
+      } else {
+        res.status(204);
+      }
+    });
+  }
+});
 
-//   } else if ('id' in req.body && 'content' in req.body && id in notes) {
-//     notes[id].content = req.body.content;
-//     fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
-//       if (err) {
-//         console.error(err);
-//         res.status(500).json({ error: 'An unexpected error occurred' });
-//       } else {
-//         // console.log('New note has been created and saved!');
-//       }
-//     });
-//   }
-// });
+app.put('/api/notes/:id', (req, res) => {
+  const id = req.params.id;
+
+  if (id < 0 || ('content' in req.body === false)) {
+    res.status(400).json({ error: 'make sure id is a positive integer and to include the content property in the req.body' });
+  } else if (id in notes === false) {
+    res.status(404).json({ error: 'make sure to use a valid id' });
+  } else if ('content' in req.body && id in notes) {
+    notes[id].content = req.body.content;
+    fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An unexpected error occurred' });
+      } else {
+        res.status(200).json(notes[id]);
+      }
+    });
+  }
+});
