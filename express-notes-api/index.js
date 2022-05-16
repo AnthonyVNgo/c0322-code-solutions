@@ -58,21 +58,6 @@ app.delete('/api/notes/:id', (req, res) => {
   } else if (id in notes) {
     delete notes[req.params.id];
     fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
-      if (err) throw err;
-    });
-
-    res.sendStatus(204);
-  }
-});
-
-app.delete('/api/notes/:id', (req, res) => {
-  const id = req.params.id;
-
-  if (id < 0) {
-    res.status(400).json({ error: 'id must be a positive integer' });
-  } else if (id in notes) {
-    delete notes[req.params.id];
-    fs.writeFile('./data.json', JSON.stringify(dataJson, null, 2), err => {
       if (err) {
         console.error(err);
         res.status(500).json({ error: 'An unexpected error occurred' });
