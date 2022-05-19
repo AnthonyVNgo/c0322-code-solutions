@@ -1,0 +1,52 @@
+div.container {
+  margin: auto;
+  width: 100px;
+}
+
+div.row {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+div.toggle-container {
+  border: black 1px solid;
+  border-radius: 42069px;
+  flex-basis: 100%;
+  padding: 0;
+  height: 25px;
+  position: relative;
+  text-align: center;
+}
+
+.on {
+  background-color: greenyellow;
+}
+
+.off {
+  background-color: red;
+}
+
+button {
+  height: 100%;
+  background-color: white;
+  border-radius: 42069px;
+  border: none;
+  width: 25px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-duration: 1000ms;
+}
+
+button.slide-off {
+  height: 100%;
+  background-color: white;
+  border-radius: 42069px;
+  border: none;
+  width: 25px;
+  margin: 0;
+  transform: translateX(73px);
+  transition-duration: 1000ms;
+}
