@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import Stopwatch from './validated-input';
+import { RegistrationForm } from './validated-input';
 
 const container = document.querySelector('#root');
 const root = ReactDOM.createRoot(container);
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(container);
 const element = (
   <div className='container'>
     <div className="row">
-      <Stopwatch />
+      <RegistrationForm/>
     </div>
   </div>
 );

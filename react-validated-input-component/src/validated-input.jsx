@@ -1,43 +1,45 @@
 
 import React from 'react';
 
-export default class Stopwatch extends React.Component {
+export class RegistrationForm extends React.Component {
   constructor() {
     super();
-    this.state = { clicks: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleOverlayClick = this.handleOverlayClick.bind(this);
+    this.state = { password: '', length: 0 };
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
-  handleClick() {
-    this.setState({ clicks: !this.state.clicks });
-  }
-
-  handleOverlayClick() {
-    this.setState({ clicks: false });
+  handlePasswordChange(event) {
+    this.setState({ password: event.target.value });
+    this.setState({ length: this.state.password.length });
   }
 
   render() {
-    const overlayClasses = this.state.clicks ? 'display-overlay' : 'display-none';
-    const navClasses = this.state.clicks ? 'display-nav' : 'display-none-nav';
+    const iconClasses = this.state.password.length < 8 ? 'fa-solid fa-xmark' : 'fa-solid fa-check';
+    let textClasses = '';
+    let outputText = '';
+
+    if (this.state.password.length === 0) {
+      textClasses = 'zero';
+      outputText = 'Password required ';
+    } else if (this.state.password.length > 0 && this.state.password.length < 8) {
+      textClasses = 'less-than-8';
+      outputText = 'Your password is too short';
+    } else if (this.state.password.length >= 8) {
+      textClasses = 'correct-length';
+    }
 
     return (
-      <div className='column'>
-        <i onClick={this.handleClick} className="fa-solid fa-bars"></i>
-        <div className={overlayClasses} onClick={this.handleClick}>
-          <div className={navClasses}>
-            <div className="column-100">
-              <h1 className='nav-h1'>Choose a Game</h1>
-              <ul>
-                <li>The Legend of Zelda</li>
-                <li>A Link to the Past</li>
-                <li>Ocarina of Time</li>
-                <li>The Wind Waker</li>
-                <li>Breath of the Wild</li>
-              </ul>
-            </div>
-          </div>
+      <div className='main-container'>
+      <form onSubmit={this.handleSubmit} action="">
+        <div>
+          <label htmlFor="password">Password</label>
         </div>
+        <div className='input-container'>
+          <input id="password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+          <i className={iconClasses}></i>
+        </div>
+        <div><p className={textClasses}>{outputText}</p></div>
+      </form>
       </div>
     );
   }
