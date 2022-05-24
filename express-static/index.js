@@ -11,6 +11,6 @@ const aVariable = path.join(__dirname, 'public');
 console.log(__dirname);
 console.log(aVariable);
 
-const anotherVariable = express.static('public');
+const anotherVariable = express.static(aVariable);
 console.log(anotherVariable);
 app.use(anotherVariable);
