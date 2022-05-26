@@ -30,7 +30,6 @@ export default class App extends React.Component {
   }
 
   addTodo(newTodo) {
-    const shallowArr = [];
     const init = {
       method: 'POST',
       headers: {
@@ -39,11 +38,15 @@ export default class App extends React.Component {
       body: JSON.stringify(newTodo)
     };
 
+    const todoArr = this.state.todos;
+
     fetch('api/todos', init)
       .then(fetchResponse => fetchResponse.json())
       .then(data => {
         // console.log(data);
-        shallowArr.concat(this.todos);
+        const newArr = todoArr.concat(data);
+        // console.log(newArr);
+        this.setState({ todos: newArr });
       });
     /**
     * Use fetch to send a POST request to `/api/todos`.
@@ -64,27 +67,31 @@ export default class App extends React.Component {
   }
 
   toggleCompleted(todoId) {
-    // const stateArr = this.state.todos;
-    // const indexId = stateArr.findIndex(element => element.todoId === todoId);
-    // const matchingId = stateArr.find(element => element.todoId === todoId);
-    // const { isCompleted: status } = indexId;
-    // const $isCompleted = {
-    //   isCompleted: !status
-    // };
-    const shallowArr = [];
+    const todoArr = this.state.todos;
+    const indexId = todoArr.findIndex(element => element.todoId === todoId);
+    // console.log(indexId);
+    // console.log(todoArr[indexId].isCompleted);
+    const { isCompleted: status } = todoArr[indexId];
+    const $isCompleted = {
+      isCompleted: !status
+    };
 
     const init = {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(todoId)
+      body: JSON.stringify($isCompleted)
     };
     fetch(`api/todos/${todoId}`, init)
       .then(fetchResponse => fetchResponse.json())
       .then(data => {
-        shallowArr.concat(this.todos);
         // console.log(data);
+        const newArr = todoArr.slice();
+        // console.log(newArr);
+        newArr[indexId] = data;
+        this.setState({ todos: newArr });
+
       });
     /**
      * Find the index of the todo with the matching todoId in the state array.
