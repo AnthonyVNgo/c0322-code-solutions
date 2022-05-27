@@ -25,11 +25,10 @@ app.get('/api/grades', (req, res) => {
     .then(result => {
       res.status(200).json(result.rows);
     })
-    // .catch(err => {
-    .catch(() => {
-      // console.log(err);
+    .catch(err => {
+      console.error(err);
       res.status(500).json({
-        error: 'An unexpected error occurred'
+        error: 'a happy accident occurred'
       });
     });
 });
@@ -37,8 +36,6 @@ app.get('/api/grades', (req, res) => {
 app.post('/api/grades', (req, res) => {
   const { name, course } = req.body;
   const score = Number(req.body.score);
-  // console.log(typeof req.body.score);
-
   if (!Number.isInteger(score) || score < 0 || score > 100) {
     res.status(400).json({
       error: 'score must be an integer between 0 and 100'
@@ -63,15 +60,13 @@ app.post('/api/grades', (req, res) => {
 
   db.query(sql, params)
     .then(result => {
-      // console.log(result);
       const [newGrade] = result.rows;
       res.status(201).json(newGrade);
     })
-    // .catch(err => {
-    .catch(() => {
-      // console.log(err);
+    .catch(err => {
+      console.error(err);
       res.status(500).json({
-        error: 'An unexpected error occurred'
+        error: 'a happy accident occurred'
       });
     });
 });
@@ -115,8 +110,13 @@ app.put('/api/grades/:gradeId', (req, res) => {
       } else {
         res.json(updatedGrade);
       }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'a happy accident occurred'
+      });
     });
-  // .catch(err => next(err));
 });
 
 app.delete('/api/grades/:gradeId', (req, res) => {
@@ -138,7 +138,6 @@ app.delete('/api/grades/:gradeId', (req, res) => {
   const params = [id];
   db.query(sql, params)
     .then(result => {
-      // console.log('something happened');
       const [deletedGrade] = result.rows;
       if (!deletedGrade) {
         res.status(404).json({
@@ -147,6 +146,11 @@ app.delete('/api/grades/:gradeId', (req, res) => {
       } else {
         res.sendStatus(204);
       }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'a happy accident occurred'
+      });
     });
-  // .catch(err => next(err));
 });
