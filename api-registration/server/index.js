@@ -24,7 +24,6 @@ app.post('/api/auth/sign-up', (req, res, next) => {
     throw new ClientError(400, 'username and password are required fields');
   }
 
-  /* your code starts here */
   argon2.hash(password)
     .then(hashResult => {
       const sql = `
@@ -51,19 +50,6 @@ app.post('/api/auth/sign-up', (req, res, next) => {
         error: 'a happy accident occurred'
       });
     });
-
-  /**
-   * Hash the user's password with `argon2.hash()`
-   * Then, 😉
-   *   Insert the user's "username" and "hashedPassword" into the "users" table.
-   *   Then, 😉
-   *     Respond to the client with a 201 status code and the new user's "userId", "username", and "createdAt" timestamp.
-   *   Catch any errors.
-   * Catch any errors.
-   *
-   * Hint: Insert statements can include a `returning` clause to retrieve the insterted row(s).
-   */
-
 });
 
 app.use(errorMiddleware);
