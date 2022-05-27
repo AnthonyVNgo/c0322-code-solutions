@@ -25,13 +25,33 @@ app.post('/api/auth/sign-up', (req, res, next) => {
   }
 
   /* your code starts here */
-  // argon2
-  //   .hash(password)
-  //   .then(hashedPassword => {
+  argon2.hash(password)
+    .then(hashResult => {
+      const sql = `
+        insert into "users" ("username", "hashedPassword")
+        values($1, $2)
+        returning *;
+      `;
+      const params = [username, hashResult];
+      db.query(sql, params)
+        .then(queryResult => {
+          const [newUser] = queryResult.rows;
+          res.status(201).json(newUser);
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({
+            error: 'a happy accident occurred'
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({
+            error: 'a happy accident occurred'
+          });
+        });
+    });
 
-  //   })
-  //   .catch(err => {
-  //   });
   /**
    * Hash the user's password with `argon2.hash()`
    * Then, 😉
