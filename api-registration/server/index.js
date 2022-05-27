@@ -43,13 +43,13 @@ app.post('/api/auth/sign-up', (req, res, next) => {
           res.status(500).json({
             error: 'a happy accident occurred'
           });
-        })
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({
-            error: 'a happy accident occurred'
-          });
         });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'a happy accident occurred'
+      });
     });
 
   /**
