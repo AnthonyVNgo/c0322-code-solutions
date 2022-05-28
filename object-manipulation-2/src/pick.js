@@ -1,12 +1,18 @@
-// /* exported pick */
-// function pick(source, keys) {
-//   const outputObject = {};
-//   for (var i = 0; i < keys.length; i++) {
-//     const property = keys[i];
-//     outputObject.property = source.property;
-//   }
-//   return outputObject;
-// }
+/* exported pick */
+function pick(source, keys) {
+  var output = {};
 
-// // source = reference object
-// // keys = an array of keys we want to pick from the source = reference object
+  // console.log(source);
+  // console.log(keys);
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] in source) {
+      output[`${keys[i]}`] = source[`${keys[i]}`];
+    }
+  }
+  // console.log(output);
+  return output;
+}
+
+// the function takes in an object passed in through the source argument
+// the function takes in properties passed in through the keys argument
+// the function will return any matching keys from the passed argument and object
