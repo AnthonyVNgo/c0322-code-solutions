@@ -7,8 +7,13 @@ function authorizationMiddleware(req, res, next) {
 
   const token = req.get('x-access-token');
   if (!token) {
-    // console.log('bangbang');
     throw new ClientError(401, 'authentication required');
+    // console.log('bangbang');
+    // to test, use: http - v get: 3000 / api / flashcards
+    // returns bangbang in the server-side terminal
+    // returns the appropriate response from the server in the client-side httpie terminal
+    // renders in localhost:3000 BROWSER error: authentication required
+    // not exactly sure where/how this is happening
   } else {
     const payload = jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = payload;
@@ -32,8 +37,6 @@ function authorizationMiddleware(req, res, next) {
     * https://github.com/auth0/node-jsonwebtoken#jwtverifytoken-secretorpublickey-options-callback
     */
 }
-
-authorizationMiddleware();
 
 // console.log('fu');
 // console.log(authorizationMiddleware);
