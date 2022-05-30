@@ -13,7 +13,24 @@ export default class App extends React.Component {
     };
   }
 
+  // function parseRoute(hashRoute) {
+  //   if (hashRoute.startsWith('#')) {
+  //     hashRoute = hashRoute.replace('#', '');
+  //   }
+  //   const [path, queryString] = hashRoute.split('?');
+  //   const params = new URLSearchParams(queryString);
+  //   return { path, params };
+  // }
+
   componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
+    });
+
+    // addEventListener needs an event 'hashchange' and a callback function
+
     /**
      * Listen for hash change events on the window object
      * Each time the window.location.hash changes, parse

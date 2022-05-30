@@ -16,3 +16,6 @@ export default function Header(props) {
     </header>
   );
 }
+
+// this is the header / nav bar
+// where's all the styling coming from tho ...?
