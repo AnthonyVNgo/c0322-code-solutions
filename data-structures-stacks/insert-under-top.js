@@ -5,7 +5,6 @@ function insertUnderTop(stack, value) {
   const top = stack.pop();
   stack.push(value);
   stack.push(top);
-
 }
 
 // line 5 pops off the top value and stores it for later use

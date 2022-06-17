@@ -37,8 +37,3 @@ describe('insertUnderTop(stack, value)', function () {
   });
 
 });
-
-// const top = stack.pop();
-// if (typeof top === 'undefined') return;
-// stack.push(value);
-// stack.push(top);
