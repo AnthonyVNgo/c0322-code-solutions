@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make Adder</title>
+</head>
+<body>
+  <script>
+    function makeAdder(x) {
+      return function (y) { return x + y; };
+    }
+
+    // returns the function stored inside of the makeAdder(x)'s code block
+    // the code block for function (y) has access to the argument passed in the parameter x because function (y) is within makeAdder(x)'s function scope
+
+    const add5 = makeAdder(5);
+    // console.log(add5);
+    // when makeAdder(5) is called, we simply get the function stored within (line 11) returned and the function on line 11 has access to the number 5 passed in as an argument
+    // so currently, makeAdder(5) returns // function (y) { returns 5 + y }
+    // add5(2) now calls the return function (y), but passes 2 as an argument for the y parameter
+    // so add5(2) returns function (2) { returns 5 + 2 } where 5 was previously x and 2 was previously y
+    // the value returned from calling? add5(2) is 7
+
+    console.log('adding 5 to 2:', add5(2));
+
+    // const add10 = makeAdder(10);
+    // console.log('adding 10 to 2:', add10(2));
+
+    console.dir(add5);
+    console.dir(add5(2));
+
+    // console.dir(add10);
+  </script>
+</body>
+</html>
