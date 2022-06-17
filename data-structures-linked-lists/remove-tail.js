@@ -13,9 +13,6 @@ function removeTail(list) {
     prev = next;
     next = next.next;
   }
-
-  // if next.next === null, then prev.next = null
-  // return list returns 1 node if there's only 2 nodes
   prev.next = null;
 
   // prev.next ≠ prev.list.next because we're referencing the property next with the dot, not the variable
