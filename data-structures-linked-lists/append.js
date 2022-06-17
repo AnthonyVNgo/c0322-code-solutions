@@ -4,7 +4,6 @@
 function append(list, value) {
   while (list.next) list = list.next;
   list.next = new LinkedList(value);
-  // console.log(list.next);
 }
 
 // the same logic from get-getTail.js applies to this exercise, except for the creation of a new LinkedList()
