@@ -5,6 +5,12 @@ function flatten(array) {
     if (Array.isArray(array[i]) === false) {
       newArray.push(array[i]);
     }
+
+    if (Array.isArray(array[i]) === true) {
+      for (let j = 0; j < array[i].length; j++) {
+        newArray.push(array[i][j]);
+      }
+    }
   }
   return newArray;
 }

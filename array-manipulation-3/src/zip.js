@@ -1,28 +1,22 @@
 /* exported zip */
 function zip(first, second) {
   const mainArr = [];
-  const newArr = [];
-  const masterArr = [];
-
-  for (var i = 0; i < first.length; i++) {
-    newArr.push(first[i], second[i]);
+  if (first.length > second.length) {
+    while (first.length !== second.length) {
+      first.pop();
+    }
   }
-  // console.log(newArr);
-
-  // console.log(newArr.slice(0, 2));
-
-  for (var j = 0; j < newArr.length; j++) {
-    mainArr.push(newArr.slice(j, j + 2));
-    // j++;
-    // console.log(j);
+  while (second.length !== first.length) {
+    second.pop();
   }
 
-  // console.log(mainArr);
-
-  for (var k = 0; k < mainArr.length; k++) {
-    masterArr.push(mainArr[k]);
+  for (let i = 0; i < first.length; i++) {
+    mainArr.push([first[i], second[i]]);
   }
-
-  return masterArr;
-
+  return mainArr;
 }
+
+// create an output array to use as the function's return value
+// make the arrays equal in length to avoid dealing with uneven subarrays / complications
+// push the subarray containing the first elements from both the first and second array into the output array, mainArr
+// return the output array, mainArr
