@@ -1,7 +1,6 @@
 /* exported difference */
 function difference(first, second) {
   const outputArr = [];
-
   for (let i = 0; i < first.length; i++) {
     if (!second.includes(first[i])) {
       outputArr.push(first[i]);
