@@ -15,9 +15,9 @@ function flatten(array) {
   return newArray;
 }
 
-// return a NEW array // newArray
-// test whether a value is an array with Array.isArray
-// test whether each element in the array is an array with Array.isArray
-
-// if the element in the array, array[i], is not an array, push it into the new array newArray
-// if the elemnt in the array, array[i], is an array, then loop through the array and push the elements into the new array newArray
+// line 3. declare a variable for the output array, named newArray for the function to return at the end of its operation
+// lines 4-7
+// use a for loop to check if the array's elements are arrays || !array
+// if the array's element is not an array, then push it into the newArray
+// if the array's element is an array, then use a for loop to push the nested array's elements into the output array, newArray
+// return the output array, newArray

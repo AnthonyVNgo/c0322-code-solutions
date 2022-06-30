@@ -15,10 +15,15 @@ function difference(first, second) {
   return outputArr;
 }
 
-// A new Array containing the symmetric difference between first and second.
-// That is, elements are included if they are found in one Array,
-// but not the other.
-// The result values are unqiue and
-// their order is determined by the order they occur.
+// line 3. declare a variable for the output array, named outputArr for the function to return at the end of its operation
 
-// can i use set again to get unique values?
+// line 4-8
+// use a for loop to check if the second array doesn't include elements from the first array
+// if the second array doesn't include the element from the first array, then push it into the outputArr
+
+// line 10-14
+// use a for loop to check if the first array doesn't include elements from the second array
+// if the first array doesn't include the element from the second array, then push it into the outputArr
+
+// line 15
+// return outputArr at the end

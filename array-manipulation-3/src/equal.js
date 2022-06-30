@@ -12,16 +12,10 @@ function equal(first, second) {
   return true;
 }
 
-// include a guard to see if the array passed as an argument for the first parameter is
-// the same length as the array passed as an argument for the second parameter
+// line 3. include a guard to see if the arrays are equal in length. If they're not equal in length, then instantly return false.
 
-// if the first array's length isn't equal to the second, then return false because we'd know that
-// the arrays are inherently different due to length
-
-// if the arrays are equal in length, then check both the array's elements and see if they're equal to eachother by using a for loop
-
-// if the elements are not equal to each other, then return false
-
-// if the elements are equal to eachother, then the variable i increments in the for loops final expression and the loop continues to check the next element in both the arrays through bracket the use of bracket notation on the array first[i] & second[i]
-
-// if the for loop completes its operation of checking whether the two array elements are equal to each other and does not return false during any iteration, then return true
+// line 7-11.
+// now that the arrays are equal in length, loop through each index to check if each element within the two arrays are equal to eachother
+// if the elements at index, [i], are not equal, then return false
+// if the loop completes its operations without returning false, then that means that all of the elements within both arrays are equal to eachother,
+// and the next line of code executes, which returns true

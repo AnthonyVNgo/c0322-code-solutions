@@ -16,7 +16,14 @@ function zip(first, second) {
   return mainArr;
 }
 
-// create an output array to use as the function's return value
-// make the arrays equal in length to avoid dealing with uneven subarrays / complications
-// push the subarray containing the first elements from both the first and second array into the output array, mainArr
-// return the output array, mainArr
+// line 3. declare a variable for the output array, named mainArr for the function to return at the end of its operation
+// line 4-8
+// include a guard to make the first array the same length as the second array
+
+// line 9-11
+// include a guard to make the second array the same length as the first array
+
+// line 13-15
+// use a for loop and within its codeblock, push into the mainArr an array that contains the values of the first and second array at index[i]
+
+// line 16. return the output array mainArr
