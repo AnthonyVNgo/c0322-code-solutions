@@ -14,6 +14,7 @@ function createDeck() {
 }
 function deal() {
   const deck = createDeck();
+  let playerNumber = 1;
   players.forEach(currentElement => {
     currentElement.hand = deck.splice(0, 2);
     let value = 0;
@@ -27,12 +28,12 @@ function deal() {
       }
     }
     currentElement.value = value;
-    let playerNumber = 1;
     currentElement.name = `player${playerNumber}`;
     playerNumber++;
   });
   const playerValues = players.map(player => player.value);
   const highestValue = Math.max(...playerValues);
+  // console.log(players);
   return `player ${playerValues.indexOf(highestValue) + 1} wins, with a value of: ${players[playerValues.indexOf(highestValue)].value}`;
 }
 deal();
