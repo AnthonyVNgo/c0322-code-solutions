@@ -31,9 +31,8 @@ function deal() {
     currentElement.name = `player${j}`;
     j++;
   });
-  console.log(players);
+  // const playerValues = players.map(player => player.value);
 }
-
 deal();
 
 // function calculateValue(currentElement) {
