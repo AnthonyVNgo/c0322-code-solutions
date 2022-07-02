@@ -31,7 +31,10 @@ function deal() {
     currentElement.name = `player${j}`;
     j++;
   });
-  // const playerValues = players.map(player => player.value);
+  const playerValues = players.map(player => player.value);
+  const highestValue = Math.max(...playerValues);
+  console.log(players);
+  return `player ${playerValues.indexOf(highestValue) + 1} wins, with a value of: ${players[playerValues.indexOf(highestValue)].value}`;
 }
 deal();
 
