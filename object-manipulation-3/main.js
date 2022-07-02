@@ -1,6 +1,6 @@
 // // console.log('Lodash is loaded:', typeof _ !== 'undefined');
 // const suit = ['spades', 'diamonds', 'clubs', 'hearts'];
-// const rank = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+// const rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 // const Player = class {
 //   constructor(name, hand, value) {
 //     this.name = name;
@@ -22,42 +22,33 @@
 // function deal() {
 //   const deck = createDeck();
 //   players.forEach(currentElement => {
-//     // currentElement.hand.push(_.sampleSize(deck, 8).splice(0, 2));
-//     // currentElement.hand.push(_.shuffle(deck).splice(0, 2));
 //     currentElement.hand = deck.splice(0, 2);
-//     // console.log(currentElement.hand[0]);
-//     console.log(currentElement);
+//     let value = 0;
+//     for (let i = 0; i < currentElement.hand.length; i++) {
+//       if (currentElement.hand[i].rank === 'A') {
+//         value += 11;
+//       } else if (currentElement.hand[i].rank === 'J' || currentElement.hand[i].rank === 'Q' || currentElement.hand[i].rank === 'K') {
+//         value += 10;
+//       } else if (currentElement.hand[i].rank !== 'A' || currentElement.hand[i].rank !== 'J' || currentElement.hand[i].rank !== 'Q' || currentElement.hand[i].rank !== 'K') {
+//         value += currentElement.hand[i].rank;
+//       }
+//     }
+//     currentElement.value = value;
 //   });
 // }
 
-// // _.sampleSize returns an array
-// // .splice returns an array as well
-
 // // function calculateValue(currentElement) {
-// //   let value = 0;
-// //   for (let i = 0; i < currentElement.hand.length; i++) {
-// //     if (currentElement.hand[0][i].rank === 'A') {
-// //       value += 11;
-// //     } else if (currentElement.hand[0][i].rank === 'J' || currentElement.hand[0][i].rank === 'Q' || currentElement.hand[0][i].rank === 'K') {
-// //       value += 10;
-// //     } else if (currentElement.hand[0][i].rank !== 'A' || currentElement.hand[0][i].rank !== 'J' || currentElement.hand[0][i].rank !== 'Q' || currentElement.hand[0][i].rank !== 'K') {
-// //       value += i;
-// //     }
+// // let value = 0;
+// // for (let i = 0; i < currentElement.hand.length; i++) {
+// //   if (currentElement.hand[i].rank === 'A') {
+// //     value += 11;
+// //   } else if (currentElement.hand[i].rank === 'J' || currentElement.hand[i].rank === 'Q' || currentElement.hand[i].rank === 'K') {
+// //     value += 10;
+// //   } else if (currentElement.hand[i].rank !== 'A' || currentElement.hand[i].rank !== 'J' || currentElement.hand[i].rank !== 'Q' || currentElement.hand[i].rank !== 'K') {
+// //     value += currentElement.hand[i].rank;
 // //   }
-// //   return value;
 // // }
-// // function calculateValue(currentElement) {
-// //   let value = 0;
-// //   for (let i = 0; i < currentElement.hand.length; i++) {
-// //     if (currentElement.hand[i].rank === 'A') {
-// //       value += 11;
-// //     } else if (currentElement.hand[i].rank === 'J' || currentElement.hand[i].rank === 'Q' || currentElement.hand[i].rank === 'K') {
-// //       value += 10;
-// //     } else if (currentElement.hand[i].rank !== 'A' || currentElement.hand[i].rank !== 'J' || currentElement.hand[i].rank !== 'Q' || currentElement.hand[i].rank !== 'K') {
-// //       value += i;
-// //     }
-// //   }
-// //   return value;
+// // currentElement.value = value;
 // // }
 
 // // A = 11
@@ -76,3 +67,23 @@
 // //  high to low spade hearts diamond clubs
 
 // // const dealt = (_.sampleSize(createDeck(), 8));
+
+// // _.sampleSize returns an array
+// // .splice returns an array as well
+// // currentElement.hand.push(_.sampleSize(deck, 8).splice(0, 2));
+// // currentElement.hand.push(_.shuffle(deck).splice(0, 2));
+// // console.log(currentElement.hand[0]);
+
+// // function calculateValue(currentElement) {
+// //   let value = 0;
+// //   for (let i = 0; i < currentElement.hand.length; i++) {
+// //     if (currentElement.hand[0][i].rank === 'A') {
+// //       value += 11;
+// //     } else if (currentElement.hand[0][i].rank === 'J' || currentElement.hand[0][i].rank === 'Q' || currentElement.hand[0][i].rank === 'K') {
+// //       value += 10;
+// //     } else if (currentElement.hand[0][i].rank !== 'A' || currentElement.hand[0][i].rank !== 'J' || currentElement.hand[0][i].rank !== 'Q' || currentElement.hand[0][i].rank !== 'K') {
+// //       value += i;
+// //     }
+// //   }
+// //   return value;
+// // }
