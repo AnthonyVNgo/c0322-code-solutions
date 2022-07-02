@@ -17,28 +17,35 @@
 //       deck.push(card);
 //     }
 //   }
-//   return deck;
+//   return _.shuffle(deck);
 // }
 // function deal() {
+//   const deck = createDeck();
 //   players.forEach(currentElement => {
-//     currentElement.hand.push(_.sampleSize(createDeck(), 8).splice(0, 2));
-//     currentElement.value = calculateValue(currentElement);
+//     // currentElement.hand.push(_.sampleSize(deck, 8).splice(0, 2));
+//     // currentElement.hand.push(_.shuffle(deck).splice(0, 2));
+//     currentElement.hand = deck.splice(0, 2);
+//     // console.log(currentElement.hand[0]);
+//     console.log(currentElement);
 //   });
-//   console.log(players);
 // }
-// function calculateValue(currentElement) {
-//   let value = 0;
-//   for (let i = 0; i < currentElement.hand.length; i++) {
-//     if (currentElement.hand[0][i].rank === 'A') {
-//       value += 11;
-//     } else if (currentElement.hand[0][i].rank === 'J' || currentElement.hand[0][i].rank === 'Q' || currentElement.hand[0][i].rank === 'K') {
-//       value += 10;
-//     } else if (currentElement.hand[0][i].rank !== 'A' || currentElement.hand[0][i].rank !== 'J' || currentElement.hand[0][i].rank !== 'Q' || currentElement.hand[0][i].rank !== 'K') {
-//       value += i;
-//     }
-//   }
-//   return value;
-// }
+
+// // _.sampleSize returns an array
+// // .splice returns an array as well
+
+// // function calculateValue(currentElement) {
+// //   let value = 0;
+// //   for (let i = 0; i < currentElement.hand.length; i++) {
+// //     if (currentElement.hand[0][i].rank === 'A') {
+// //       value += 11;
+// //     } else if (currentElement.hand[0][i].rank === 'J' || currentElement.hand[0][i].rank === 'Q' || currentElement.hand[0][i].rank === 'K') {
+// //       value += 10;
+// //     } else if (currentElement.hand[0][i].rank !== 'A' || currentElement.hand[0][i].rank !== 'J' || currentElement.hand[0][i].rank !== 'Q' || currentElement.hand[0][i].rank !== 'K') {
+// //       value += i;
+// //     }
+// //   }
+// //   return value;
+// // }
 // // function calculateValue(currentElement) {
 // //   let value = 0;
 // //   for (let i = 0; i < currentElement.hand.length; i++) {
