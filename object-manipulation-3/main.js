@@ -22,12 +22,36 @@
 // function deal() {
 //   players.forEach(currentElement => {
 //     currentElement.hand.push(_.sampleSize(createDeck(), 8).splice(0, 2));
+//     currentElement.value = calculateValue(currentElement);
 //   });
+//   console.log(players);
 // }
 // function calculateValue(currentElement) {
-// let value = 0
-// if (currentElement.hand.includes())
+//   let value = 0;
+//   for (let i = 0; i < currentElement.hand.length; i++) {
+//     if (currentElement.hand[0][i].rank === 'A') {
+//       value += 11;
+//     } else if (currentElement.hand[0][i].rank === 'J' || currentElement.hand[0][i].rank === 'Q' || currentElement.hand[0][i].rank === 'K') {
+//       value += 10;
+//     } else if (currentElement.hand[0][i].rank !== 'A' || currentElement.hand[0][i].rank !== 'J' || currentElement.hand[0][i].rank !== 'Q' || currentElement.hand[0][i].rank !== 'K') {
+//       value += i;
+//     }
+//   }
+//   return value;
 // }
+// // function calculateValue(currentElement) {
+// //   let value = 0;
+// //   for (let i = 0; i < currentElement.hand.length; i++) {
+// //     if (currentElement.hand[i].rank === 'A') {
+// //       value += 11;
+// //     } else if (currentElement.hand[i].rank === 'J' || currentElement.hand[i].rank === 'Q' || currentElement.hand[i].rank === 'K') {
+// //       value += 10;
+// //     } else if (currentElement.hand[i].rank !== 'A' || currentElement.hand[i].rank !== 'J' || currentElement.hand[i].rank !== 'Q' || currentElement.hand[i].rank !== 'K') {
+// //       value += i;
+// //     }
+// //   }
+// //   return value;
+// // }
 
 // // A = 11
 // // J,Q,K = 10
@@ -40,7 +64,7 @@
 // //   dealt.splice(0, 2);
 // // }
 
-// // 09658
+// // 05698
 
 // //  high to low spade hearts diamond clubs
 
