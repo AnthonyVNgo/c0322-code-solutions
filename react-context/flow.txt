@@ -1,0 +1,24 @@
+package.json contains all npm dependencies
+we use npm install to install / update dependencies / install modules
+we now have the following modules to work with:
+pg - node-postgres
+argon2 - node-argon2
+express - express
+jwt - jsonwebtoken
+
+
+Serverside - index.js
+
+lines 1-8
+exported module content is imported with the use of Node.js require() functon.
+
+require(id)
+Node.js require() function takes a string that represents the module name or path as argument
+The function returns exported module content / imports the value of the module object's exports property
+
+require('path')
+Node's built in path module is imported
+provides a way of working with directories and file paths
+
+require('pg')
+pg is
