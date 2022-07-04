@@ -19,12 +19,16 @@ require('path')
 Node's built in path module is imported
 provides a way of working with directories and file paths
 
-require('pg') imports:
-the var PG (not too sure what's going on in index.js: 17-25)
-the PG var includes the pool property that we're going to use later
+require('pg')
+pg/index.js requires and imports the module exports from:
+./client, ./defaults, ./connection, 'pg-pool', 'pg-protocol'
+pg/index.js module.exports (depending on the condition) returns a new PG class object
+the PG object contains the properties: defaults, Client, Query, Pool, _pools, Connection, DtabaseError
+The Pool property will be relevant for later operations
 
 require('argon2') imports:
 module.exports = { defaults, limits, hash, needsRehash, verify, ...types };
+The hash property of the imported/exported object assigned to the variable argon2 will be relevant for later operations
 
 require('express') imports:
 the exported modules contained in the directory lib
@@ -33,3 +37,19 @@ module.exports = require('./lib/express');
 interesting to note:
 exports = module.exports = createApplication;
 https://stackoverflow.com/questions/23509162/expressjs-javascript-fundamentals-exports-module-exports-createapplication
+
+
+line 10: confused
+a new (new?) object PG object is created
+pg exports a new PG object, but on index.js:10 db = new pg.Pool ?
+
+line 17:
+An Express application object is created by calling the express() function
+
+line 18: confused
+Joins the specified paths (__dirname, 'public') into one
+should return something like dirname-example/public
+
+line 20: confused
+
+line 24:
