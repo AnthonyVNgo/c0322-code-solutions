@@ -43,3 +43,9 @@ A route is defined with an endpoint comprised of the POST HTTP Request Method an
 The handler function has access to the contents of the request object's body property, which will contain an object with the username and password property
 The username and password property of the request object's body are assigned to their corresponding variables
 If either the variables return true with the bang operator, then an error is thrown
+db.query(sql, params) returns a promise object containing the search results for the database/postgresql query
+if/once that promise is fulfilled, then the resulting first element from results.row is destructured and assigned to the variable user
+the variable/object user is destructured and its userId and hashedPassword properties are assigned to the corresponding variables
+the argon2.verify method is called to confirm that the hashedPassword matches the password originally passed in through the req.body
+if/once that promise is fulfilled, then an object with the userId and username property/values are assigned to the payload variable/then a payload object containing the user's "userId" and "username" are created
+and a new signed token is created with `jwt.sign()`, using the payload and your TOKEN_SECRET
