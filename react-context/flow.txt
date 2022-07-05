@@ -6,50 +6,40 @@ argon2 - node-argon2: Argon2 is a password-hashing function that summarizes the 
 express - express: Fast, unopinionated, minimalist web framework for node.
 jwt - jsonwebtoken: An implementation of JSON Web Tokens.
 
-
 Serverside - index.js
 lines 1-8:
-exported module content is imported with the use of Node.js require() functon.
+exported module content is imported with the use of Node.js require() function
 
-require(id)
-Node.js require() function takes a string that represents the module name or path as argument
-The function returns exported module content / imports the value of the module object's exports property
+line 17: the app oject is crea
 
-require('path')
-Node's built in path module is imported
-provides a way of working with directories and file paths
+line 25:
+app.use
+Mounts the specified middleware function or functions at the specified path:
+the middleware function is executed when the base of the requested path matches path.
+This is a middleware function with no mount path.
+So, the function is executed every time the app receives a request.
 
-require('pg')
-pg/index.js requires and imports the module exports from:
-./client, ./defaults, ./connection, 'pg-pool', 'pg-protocol'
-pg/index.js module.exports (depending on the condition) returns a new PG class object
-the PG object contains the properties: defaults, Client, Query, Pool, _pools, Connection, DtabaseError
-The Pool property will be relevant for later operations
+express.json
+The express.json() function is a built-in middleware function in Express.
+It parses incoming requests with JSON payloads and is based on body-parser.
 
-require('argon2') imports:
-module.exports = { defaults, limits, hash, needsRehash, verify, ...types };
-The hash property of the imported/exported object assigned to the variable argon2 will be relevant for later operations
+Middleware: Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle.
 
-require('express') imports:
-the exported modules contained in the directory lib
-module.exports = require('./lib/express');
+Routes: How an application’s (the app object) [matching] endpoints (path + http request method) respond to client requests (via handler function)
 
-interesting to note:
-exports = module.exports = createApplication;
-https://stackoverflow.com/questions/23509162/expressjs-javascript-fundamentals-exports-module-exports-createapplication
+Promise: The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
 
+line 27 - 48:
+A route is defined with an endpoint comprised of the POST HTTP Request Method and api/auth/sign-up path.
+The handler function has access to the contents of the request object's body property, which will contain an object with the username and password property
+The username and password property of the request object's body are assigned to their corresponding variables
+If either the variables return true with the bang operator, then an error is thrown
+argon2.hash(password) returns a promise object containing the hashed passsword
+if that promise is fulfilled, then the hashedPassword and username ($1,$2 and represented in params) are inserted into the database, into the users table, within the username and hashedPassword columns
+if/once that promise is fulfilled, then the resulting first element from results.row (newly created row) is destructured and assigned to the variable user and is sent back as a response to the client
 
-line 10: confused
-a new (new?) object PG object is created
-pg exports a new PG object, but on index.js:10 db = new pg.Pool ?
-
-line 17:
-An Express application object is created by calling the express() function
-
-line 18: confused
-Joins the specified paths (__dirname, 'public') into one
-should return something like dirname-example/public
-
-line 20: confused
-
-line 24:
+line 50 - 81
+A route is defined with an endpoint comprised of the POST HTTP Request Method and api/auth/sign-in path
+The handler function has access to the contents of the request object's body property, which will contain an object with the username and password property
+The username and password property of the request object's body are assigned to their corresponding variables
+If either the variables return true with the bang operator, then an error is thrown
