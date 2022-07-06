@@ -6,11 +6,14 @@ argon2 - node-argon2: Argon2 is a password-hashing function that summarizes the 
 express - express: Fast, unopinionated, minimalist web framework for node.
 jwt - jsonwebtoken: An implementation of JSON Web Tokens.
 
-Serverside - index.js
+Serverside
+
+index.js
+
 lines 1-8:
 exported module content is imported with the use of Node.js require() function
 
-line 17: the app oject is crea
+line 17: the app oject is created
 
 line 25:
 app.use
@@ -51,4 +54,64 @@ if/once that promise is fulfilled, then an object with the userId and username p
 and a new signed token is created with `jwt.sign()`, using the payload and your TOKEN_SECRET
 
 
-client, server, database, user can sign up user can sign in user can stay signed in user can sign out
+Clientside
+
+app.jsx
+
+lines 1 - 9:
+App.jsx imports modules using import, assigns values to corresponding variable, from path
+
+line 30:
+A class component, App, is defined
+The App component has the initial states: user, isAuthorizing, route
+
+lines 42 - 51:
+When the App component mounts, the state, route, is updated to the current window location
+The token variable is assigned the value returned from the window object's localstorage property gitItem method, which should return null at first because there isn't a token stored without signing in
+
+lines 53 - 57:
+The handleSignIn method is defined and has the parameter/takes in result as an argument, which should be an object based on the destructuring happening in the next line
+The result argument object is destructured and the variables user and token are assigned the value of the corresponding properties in the result object
+The setItem method is called for the localStorage property of the window object and the token is set with the name 'react-context-jwt'
+
+lines 59 - 62:
+The handleSignOut method is defined
+The removeItem method is called for the localStorage property of the window object for the key with the name 'react-context-jwt'
+
+both of these methods update the state of the component that they're used in, which leads to a re-rendering of the component
+
+lines 64 - 73:
+The renderPage method is defined
+The variable path is assigned the returned value of this.state.route, which would be the current location / url
+The renderPage method returns the Home, Auth, or NotFound page component depending on which URL or path is assigned to the variable, path
+
+liens 75 - 91:
+not sure what line 76 does
+The variable contextValue is assigned an object contained the values of this.state.user, this.state.route, the handleSignIn and handleSignOut methods
+Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+The AppContext.Provider component's value property is assigned the variable/object contextValue
+This will allow the components nested within, which depends on this.renderPage) access to the values of contextValue
+
+auth.jsx
+auth.jsx imports modules using import, assigning values to corresponding variables, from path
+The contextType property on a class (AuthPage.contextType) can be assigned a Context object created by React.createContext(). Using this property lets you consume the nearest current value of that Context type using this.context. You can reference this in any of the lifecycle methods including the render function.
+The AuthPage class component has access to AppContext.Provider value property that it is nested within as a result of being rendered from this.renderPage
+There's a condition to guard if (user) returns true, then the redirect component renders with the to property assigned the value of an empty string '', which redirects the user to the home page
+Depending on the if route.path === 'sign-in', then the value of welcome message will either be 'Please sign in to continue' or 'Create an account to get started!'
+Nested within the AuthPage component is the AuthForm component with the property OnSignIn assigned the value of handleSignin from this.context.handleSign (consuming from this.context)
+
+home.jsx
+home.jsx imports modules using import, assigning values to corresponding variables, from path
+The contextType property on a class (Home.contextType) can be assigned a Context object created by React.createContext(). Using this property lets you consume the nearest current value of that Context type using this.context. You can reference this in any of the lifecycle methods including the render function.
+The Home class component has access to AppContext.Provider value property that it is nested within as a result of being rendered from this.renderPage
+There's a condition to guard if !this.context.user returns true, then the redirect component is rendered
+
+redirect.jsx
+A function component, Redirect, is defined
+The Redirect component has the property, to
+Within the component, the return of a new URL object with the window.location passed as an argument is assigned to the variable, url
+If the Redirect component's to property is strictly equal to an empty string '', then the variable url's hash property is assigned the value of '#'
+Else, the variable url's hash property is assigned the returned value from the Redirect component's to property
+Lastly, the replace method of the location property of the window object is called and passes the url variable with its updated hash property as an argument
+
+auth-form.jsx
