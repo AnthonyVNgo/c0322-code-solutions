@@ -49,3 +49,6 @@ the variable/object user is destructured and its userId and hashedPassword prope
 the argon2.verify method is called to confirm that the hashedPassword matches the password originally passed in through the req.body
 if/once that promise is fulfilled, then an object with the userId and username property/values are assigned to the payload variable/then a payload object containing the user's "userId" and "username" are created
 and a new signed token is created with `jwt.sign()`, using the payload and your TOKEN_SECRET
+
+
+client, server, database, user can sign up user can sign in user can stay signed in user can sign out
