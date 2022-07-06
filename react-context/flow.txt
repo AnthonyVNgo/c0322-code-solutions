@@ -115,3 +115,20 @@ Else, the variable url's hash property is assigned the returned value from the R
 Lastly, the replace method of the location property of the window object is called and passes the url variable with its updated hash property as an argument
 
 auth-form.jsx
+A class component, AuthForm, is defined
+The AuthForm has the intial states: username, password
+The AuthForm component has a handleChange method that handles and updates the component's username and password state values
+The AuthForm component has a handleSubmit method that handles form submissions and sends a POST HTTP Message Request to the path /api/auth/${action}, where action is assigned the returned value of route.path passed into the AuthForm's action property
+
+Super High Level Overview
+The user starts off on the page auth page, which contains the auth-form component that handles sign-ups and sign-in
+The user enters sign-up credentials into the input field, which updates the forms username and password state
+On submit, the values of the form's username and password state (the HTTP Message Request's Body) is stringified inserted into the database (From the route that was setup to handle the specific endpoint POST HTTP Message Request + api/auth/${action}, in this case sign-up)
+The password is hashed/inserted into the hashedPassword column
+The server responds with a status 201 and user json
+Then, The user is redirected to the sign-in page
+The user enters their login credentials (POST HTTP Message Request + api/auth/${action}, now action should've updated to sign-in)
+argon2 verifies if the value for password input matches the hashed password stored in the database
+The password and hashed password match
+Then the user is "given" a signed token which is stored in the local storage and the user is redirected to the home page
+When the user interacts with the navbar's signout button, the token is removed and the user is redirected to the authpage
