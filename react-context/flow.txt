@@ -1,3 +1,31 @@
+//// Trace n Stuff ////
+
+User can sign-up:
+The user enters their credentials into the username and password input field of the auth form. This triggers change events and updates the AuthForm component's state, which the handleChange method handles.
+
+When the user submits the form, the client makes a fetch request and the values stored in the component's username and password state are stored/sent as a JSON string.
+
+When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will hash the password, then insert the hashed password and username credentials into the dataase. Then, the server sends a JSON response with the values of the row from which the values were inserted along with a 201 status code.
+
+The client's fetch request is promised a response object, and if fulfilled, then the response object is converted into json format?, then the window.location changes to sign-in, which triggers a hashchange event that is handled with the redirect component, and the user is redirected to the sign-in page.
+
+React renders the DOM depending on the action, in this case the action is now sign-in because of the hashchange, so the variables reliant on the condition that action === 'sign-up' all update.
+
+User can sign-in:
+The user sign-in feature follows a similar flow with User can sign-up feature up until it reaches the condition within the second then method of the fetch operation and how the server handles the request.
+
+When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will search the database with the user's credentials and throw an error if the user provides an invalid username. If the user provides a valid username, then the server verifies if the password provided is valid. If the password is invalid, then an error is thrown. Otherwise the server responds with a signed token.
+
+Because result.user and result.token return true, the client calls the handleSignIn method stored in the AuthForm's onSignIn property, passing the variable/return result as an argument. This stores the signed token into local storage and updates the state user from null to the value stored in the user variable. This allows for the user to remain "signed-in" until the token is removed which will result in the user being signed-out. Also because the user value is no longer null (falsey value), the user is redirected to the Home page component as a result of the condition within the Auth page's component's condition within the render method which checks user returns a truthy value, and thus returns the Redirect component with the to component with a value of an empty string.
+
+User can remain signed-in:
+After the user enters their credentials on the sign-in action for the AuthForm component, updates the states, submits the form and the client sends the state values as a JSON string in its POST HTTP request body, and the server verifies the username credentials and verifies the hashed password stored in the database and password entered for sign-in, and the credentials match, the server responds with an object component containing a signed token and user in JSON format, and the client (Auth & AuthForm component) get the response from the server, which leads to result.user && result.token returning truthy, which calls the onSignIn property (handleSignIn method passed through context) with the result returned from the server, which updates the user state and sets the signed token in local storage, which allows for the user to remain signed-in
+
+User can sign-out:
+When the user clicks on the 'Sign out" button on the Navbar component, a click event is triggered. The button's onClick event handler calls the App component's handleSignOut method shared through context. The handleSignOut method removes the signed token from local storage and updates the state user to null, which causes the Redirect component to be returned if the user is in either the Auth or Home page because of the guards set in place to check for the return of (user) or (!this.context.user).
+
+//// technical stuff ////
+
 package.json contains all npm dependencies
 we use npm install to install / update dependencies / install modules
 we now have the following modules to work with:
@@ -132,32 +160,3 @@ argon2 verifies if the value for password input matches the hashed password stor
 The password and hashed password match
 Then the user is "given" a signed token which is stored in the local storage and the user is redirected to the home page
 When the user interacts with the navbar's signout button, the token is removed and the user is redirected to the authpage
-
-
-User can sign-up:
-The user enters their credentials into the username and password input field of the auth form. This triggers change events and updates the AuthForm component's state, which the handleChange method handles.
-
-When the user submits the form, the client makes a fetch request and the values stored in the component's username and password state are stored/sent as a JSON string.
-
-When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will hash the password, then insert the hashed password and username credentials into the dataase. Then, the server sends a JSON response with the values of the row from which the values were inserted along with a 201 status code.
-
-The client's fetch request is promised a response object, and if fulfilled, then the response object is converted the response into json format?, then the window.location changes to sign-in, which triggers a hashchange event that is handled with the redirect component, and the user is redirected to the sign-in page.
-
-React renders the DOM depending on the action, in this case the action is now sign-in because of the hashchange, so the variables reliant on the condition that action === 'sign-up' all update.
-
-User can sign-in:
-The user sign-in feature follows a similar flow with User can sign-up feature up until it reaches the condition within the second then method of the fetch operation and how the server handles the request.
-
-When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will search the database with the user's credentials and throw an error if the user provides an invalid username. If the user provides a valid username, then the server verifies if the password provided is valid. If the password is invalid, then an error is thrown. Otherwise the server responds with a signed token.
-
-The client's fetch request is promised a response object, and if fulfilled, then the response object is converted the response into json format?, then because result.user and result.token return true from the user.
-
-the handleSignIn method, which is passed down to the AuthForm component as a prop via context, is called and updates the App's state, so that user is no longer null, and isAuthorizing is no longer false because of the token ternary on line 49 app.jsx
-
-this.props.onSignIn(result)
-
-
-
-User can remain signed-in:
-
-User can sign-out:
