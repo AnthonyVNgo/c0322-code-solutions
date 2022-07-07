@@ -150,7 +150,9 @@ The user sign-in feature follows a similar flow with User can sign-up feature up
 
 When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will search the database with the user's credentials and throw an error if the user provides an invalid username. If the user provides a valid username, then the server verifies if the password provided is valid. If the password is invalid, then an error is thrown. Otherwise the server responds with a signed token.
 
-The client's fetch request is promised a response object, and if fulfilled, then the response object is converted the response into json format?, then because result.user and result.token return true from the user
+The client's fetch request is promised a response object, and if fulfilled, then the response object is converted the response into json format?, then because result.user and result.token return true from the user.
+
+the handleSignIn method, which is passed down to the AuthForm component as a prop via context, is called and updates the App's state, so that user is no longer null, and isAuthorizing is no longer false because of the token ternary on line 49 app.jsx
 
 this.props.onSignIn(result)
 
