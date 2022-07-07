@@ -1,0 +1,162 @@
+//// Trace n Stuff ////
+
+User can sign-up:
+The user enters their credentials into the username and password input field of the auth form. This triggers change events and updates the AuthForm component's state, which the handleChange method handles.
+
+When the user submits the form, the client makes a fetch request and the values stored in the component's username and password state are stored/sent as a JSON string.
+
+When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will hash the password, then insert the hashed password and username credentials into the dataase. Then, the server sends a JSON response with the values of the row from which the values were inserted along with a 201 status code.
+
+The client's fetch request is promised a response object, and if fulfilled, then the response object is converted into json format?, then the window.location changes to sign-in, which triggers a hashchange event that is handled with the redirect component, and the user is redirected to the sign-in page.
+
+React renders the DOM depending on the action, in this case the action is now sign-in because of the hashchange, so the variables reliant on the condition that action === 'sign-up' all update.
+
+User can sign-in:
+The user sign-in feature follows a similar flow with User can sign-up feature up until it reaches the condition within the second then method of the fetch operation and how the server handles the request.
+
+When the server receives the request at the specified endpoint, it destructures values of the username and password property from the request object's body. If either the username or password are missing, then an error is thrown. Otherwise, the server will search the database with the user's credentials and throw an error if the user provides an invalid username. If the user provides a valid username, then the server verifies if the password provided is valid. If the password is invalid, then an error is thrown. Otherwise the server responds with a signed token.
+
+Because result.user and result.token return true, the client calls the handleSignIn method stored in the AuthForm's onSignIn property, passing the variable/return result as an argument. This stores the signed token into local storage and updates the state user from null to the value stored in the user variable. This allows for the user to remain "signed-in" until the token is removed which will result in the user being signed-out. Also because the user value is no longer null (falsey value), the user is redirected to the Home page component as a result of the condition within the Auth page's component's condition within the render method which checks user returns a truthy value, and thus returns the Redirect component with the to component with a value of an empty string.
+
+User can remain signed-in:
+After the user enters their credentials on the sign-in action for the AuthForm component, updates the states, submits the form and the client sends the state values as a JSON string in its POST HTTP request body, and the server verifies the username credentials and verifies the hashed password stored in the database and password entered for sign-in, and the credentials match, the server responds with an object component containing a signed token and user in JSON format, and the client (Auth & AuthForm component) get the response from the server, which leads to result.user && result.token returning truthy, which calls the onSignIn property (handleSignIn method passed through context) with the result returned from the server, which updates the user state and sets the signed token in local storage, which allows for the user to remain signed-in
+
+User can sign-out:
+When the user clicks on the 'Sign out" button on the Navbar component, a click event is triggered. The button's onClick event handler calls the App component's handleSignOut method shared through context. The handleSignOut method removes the signed token from local storage and updates the state user to null, which causes the Redirect component to be returned if the user is in either the Auth or Home page because of the guards set in place to check for the return of (user) or (!this.context.user).
+
+//// technical stuff ////
+
+package.json contains all npm dependencies
+we use npm install to install / update dependencies / install modules
+we now have the following modules to work with:
+pg - node-postgres: Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native libpq bindings.
+argon2 - node-argon2: Argon2 is a password-hashing function that summarizes the state of the art in the design of memory-hard functions and can be used to hash passwords for credential storage, key derivation, or other applications.
+express - express: Fast, unopinionated, minimalist web framework for node.
+jwt - jsonwebtoken: An implementation of JSON Web Tokens.
+
+Serverside
+
+index.js
+
+lines 1-8:
+exported module content is imported with the use of Node.js require() function
+
+line 17: the app oject is created
+
+line 25:
+app.use
+Mounts the specified middleware function or functions at the specified path:
+the middleware function is executed when the base of the requested path matches path.
+This is a middleware function with no mount path.
+So, the function is executed every time the app receives a request.
+
+express.json
+The express.json() function is a built-in middleware function in Express.
+It parses incoming requests with JSON payloads and is based on body-parser.
+
+Middleware: Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle.
+
+Routes: How an application’s (the app object) [matching] endpoints (path + http request method) respond to client requests (via handler function)
+
+Promise: The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+
+line 27 - 48:
+A route is defined with an endpoint comprised of the POST HTTP Request Method and api/auth/sign-up path.
+The handler function has access to the contents of the request object's body property, which will contain an object with the username and password property
+The username and password property of the request object's body are assigned to their corresponding variables
+If either the variables return true with the bang operator, then an error is thrown
+argon2.hash(password) returns a promise object containing the hashed passsword
+if that promise is fulfilled, then the hashedPassword and username ($1,$2 and represented in params) are inserted into the database, into the users table, within the username and hashedPassword columns
+if/once that promise is fulfilled, then the resulting first element from results.row (newly created row) is destructured and assigned to the variable user and is sent back as a response to the client
+
+line 50 - 81
+A route is defined with an endpoint comprised of the POST HTTP Request Method and api/auth/sign-in path
+The handler function has access to the contents of the request object's body property, which will contain an object with the username and password property
+The username and password property of the request object's body are assigned to their corresponding variables
+If either the variables return true with the bang operator, then an error is thrown
+db.query(sql, params) returns a promise object containing the search results for the database/postgresql query
+if/once that promise is fulfilled, then the resulting first element from results.row is destructured and assigned to the variable user
+the variable/object user is destructured and its userId and hashedPassword properties are assigned to the corresponding variables
+the argon2.verify method is called to confirm that the hashedPassword matches the password originally passed in through the req.body
+if/once that promise is fulfilled, then an object with the userId and username property/values are assigned to the payload variable/then a payload object containing the user's "userId" and "username" are created
+and a new signed token is created with `jwt.sign()`, using the payload and your TOKEN_SECRET
+
+
+Clientside
+
+app.jsx
+
+lines 1 - 9:
+App.jsx imports modules using import, assigns values to corresponding variable, from path
+
+line 30:
+A class component, App, is defined
+The App component has the initial states: user, isAuthorizing, route
+
+lines 42 - 51:
+When the App component mounts, the state, route, is updated to the current window location
+The token variable is assigned the value returned from the window object's localstorage property gitItem method, which should return null at first because there isn't a token stored without signing in
+
+lines 53 - 57:
+The handleSignIn method is defined and has the parameter/takes in result as an argument, which should be an object based on the destructuring happening in the next line
+The result argument object is destructured and the variables user and token are assigned the value of the corresponding properties in the result object
+The setItem method is called for the localStorage property of the window object and the token is set with the name 'react-context-jwt'
+
+lines 59 - 62:
+The handleSignOut method is defined
+The removeItem method is called for the localStorage property of the window object for the key with the name 'react-context-jwt'
+
+both of these methods update the state of the component that they're used in, which leads to a re-rendering of the component
+
+lines 64 - 73:
+The renderPage method is defined
+The variable path is assigned the returned value of this.state.route, which would be the current location / url
+The renderPage method returns the Home, Auth, or NotFound page component depending on which URL or path is assigned to the variable, path
+
+liens 75 - 91:
+not sure what line 76 does
+The variable contextValue is assigned an object contained the values of this.state.user, this.state.route, the handleSignIn and handleSignOut methods
+Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+The AppContext.Provider component's value property is assigned the variable/object contextValue
+This will allow the components nested within, which depends on this.renderPage) access to the values of contextValue
+
+auth.jsx
+auth.jsx imports modules using import, assigning values to corresponding variables, from path
+The contextType property on a class (AuthPage.contextType) can be assigned a Context object created by React.createContext(). Using this property lets you consume the nearest current value of that Context type using this.context. You can reference this in any of the lifecycle methods including the render function.
+The AuthPage class component has access to AppContext.Provider value property that it is nested within as a result of being rendered from this.renderPage
+There's a condition to guard if (user) returns true, then the redirect component renders with the to property assigned the value of an empty string '', which redirects the user to the home page
+Depending on the if route.path === 'sign-in', then the value of welcome message will either be 'Please sign in to continue' or 'Create an account to get started!'
+Nested within the AuthPage component is the AuthForm component with the property OnSignIn assigned the value of handleSignin from this.context.handleSign (consuming from this.context)
+
+home.jsx
+home.jsx imports modules using import, assigning values to corresponding variables, from path
+The contextType property on a class (Home.contextType) can be assigned a Context object created by React.createContext(). Using this property lets you consume the nearest current value of that Context type using this.context. You can reference this in any of the lifecycle methods including the render function.
+The Home class component has access to AppContext.Provider value property that it is nested within as a result of being rendered from this.renderPage
+There's a condition to guard if !this.context.user returns true, then the redirect component is rendered
+
+redirect.jsx
+A function component, Redirect, is defined
+The Redirect component has the property, to
+Within the component, the return of a new URL object with the window.location passed as an argument is assigned to the variable, url
+If the Redirect component's to property is strictly equal to an empty string '', then the variable url's hash property is assigned the value of '#'
+Else, the variable url's hash property is assigned the returned value from the Redirect component's to property
+Lastly, the replace method of the location property of the window object is called and passes the url variable with its updated hash property as an argument
+
+auth-form.jsx
+A class component, AuthForm, is defined
+The AuthForm has the intial states: username, password
+The AuthForm component has a handleChange method that handles and updates the component's username and password state values
+The AuthForm component has a handleSubmit method that handles form submissions and sends a POST HTTP Message Request to the path /api/auth/${action}, where action is assigned the returned value of route.path passed into the AuthForm's action property
+
+Super High Level Overview
+The user starts off on the page auth page, which contains the auth-form component that handles sign-ups and sign-in
+The user enters sign-up credentials into the input field, which updates the forms username and password state
+On submit, the values of the form's username and password state (the HTTP Message Request's Body) is stringified inserted into the database (From the route that was setup to handle the specific endpoint POST HTTP Message Request + api/auth/${action}, in this case sign-up)
+The password is hashed/inserted into the hashedPassword column
+The server responds with a status 201 and user json
+Then, The user is redirected to the sign-in page
+The user enters their login credentials (POST HTTP Message Request + api/auth/${action}, now action should've updated to sign-in)
+argon2 verifies if the value for password input matches the hashed password stored in the database
+The password and hashed password match
+Then the user is "given" a signed token which is stored in the local storage and the user is redirected to the home page
+When the user interacts with the navbar's signout button, the token is removed and the user is redirected to the authpage
