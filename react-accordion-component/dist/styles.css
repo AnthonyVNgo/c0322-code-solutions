@@ -1,12 +1,8 @@
 .hidden {
   display: none;
-
-  /* color: red; */
 }
 
 .not-hidden {
-  /* color: green;
-  background-color: lightblue; */
   display: block;
 }
 
