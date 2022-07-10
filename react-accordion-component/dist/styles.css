@@ -1,11 +1,13 @@
 .hidden {
-  /* display: none; */
-  color: red;
+  display: none;
+
+  /* color: red; */
 }
 
 .not-hidden {
-  color: green;
-  background-color: lightblue;
+  /* color: green;
+  background-color: lightblue; */
+  display: block;
 }
 
 ul {

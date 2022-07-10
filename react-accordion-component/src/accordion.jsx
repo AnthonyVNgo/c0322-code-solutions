@@ -3,12 +3,18 @@ import React from 'react';
 export default class Accordion extends React.Component {
   constructor() {
     super();
-    this.state = null;
+    this.state = {
+      clicked: false,
+      buttonId: null
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    // console.log('bbang');
+  handleClick(event) {
+    this.setState({
+      clicked: true,
+      buttonId: event.currentTarget.id
+    });
   }
 
   render() {
@@ -18,7 +24,14 @@ export default class Accordion extends React.Component {
           {
             this.props.topics.map((topic, index) => {
               return (
-                <AccordionItem key={index} header={topic.header} details={topic.details} clicked={this.handleClick} />
+                <AccordionItem
+                  key={index}
+                  header={topic.header}
+                  details={topic.details}
+                  onClick={this.handleClick}
+                  id={topic.id}
+                  clicked={this.state.clicked}
+                  />
               );
             })
           }
@@ -31,7 +44,7 @@ export default class Accordion extends React.Component {
 function AccordionItem(props) {
   return (
   <li>
-    <button onClick={props.clicked}>
+    <button id={props.id} onClick={props.onClick} clicked={props.clicked}>
       <h3>{props.header}</h3>
     </button>
     <AccordionDetails details={props.details}/>
@@ -40,7 +53,21 @@ function AccordionItem(props) {
 }
 
 function AccordionDetails(props) {
+  // const displayClass = props.clicked === true
+  //   ? 'not-hidden'
+  //   : 'hidden';
+
+  let displayClass;
+  if (props.clicked === true) {
+    displayClass = 'not-hidden';
+  }
+  displayClass = 'hidden';
+
   return (
-    <p className='not-hidden'>{props.details}</p>
+    // <p>{props.details}</p>
+    // <p className={displayClass}>{props.details}</p>
+    // <p className={displayClass}>{props.details}</p>
+    // <p className='not-hidden'>{props.details}</p>
+    <p className={displayClass}>{props.details}</p>
   );
 }
