@@ -44,30 +44,21 @@ export default class Accordion extends React.Component {
 function AccordionItem(props) {
   return (
   <li>
-    <button id={props.id} onClick={props.onClick} clicked={props.clicked}>
+    <button id={props.id} onClick={props.onClick} >
       <h3>{props.header}</h3>
     </button>
-    <AccordionDetails details={props.details}/>
+      <AccordionDetails details={props.details} clicked={props.clicked}/>
   </li>
   );
 }
 
 function AccordionDetails(props) {
-  // const displayClass = props.clicked === true
-  //   ? 'not-hidden'
-  //   : 'hidden';
-
-  let displayClass;
   if (props.clicked === true) {
-    displayClass = 'not-hidden';
+    return (
+      <p>{props.details}</p>
+    );
   }
-  displayClass = 'hidden';
-
-  return (
-    // <p>{props.details}</p>
-    // <p className={displayClass}>{props.details}</p>
-    // <p className={displayClass}>{props.details}</p>
-    // <p className='not-hidden'>{props.details}</p>
-    <p className={displayClass}>{props.details}</p>
-  );
+  return null;
 }
+
+// if props id !==
