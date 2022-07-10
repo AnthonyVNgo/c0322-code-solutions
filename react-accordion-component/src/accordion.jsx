@@ -12,8 +12,8 @@ export default class Accordion extends React.Component {
 
   handleClick(event) {
     this.setState({
-      clicked: true,
-      buttonId: event.currentTarget.id
+      clicked: !this.state.clicked,
+      buttonId: parseInt(event.currentTarget.id)
     });
   }
 
@@ -30,8 +30,8 @@ export default class Accordion extends React.Component {
                   details={topic.details}
                   onClick={this.handleClick}
                   id={topic.id}
+                  clickedBtnId={this.state.buttonId}
                   clicked={this.state.clicked}
-                  clickedId={this.state.buttonId}
                   />
               );
             })
@@ -48,32 +48,15 @@ function AccordionItem(props) {
     <button id={props.id} onClick={props.onClick} >
       <h3>{props.header}</h3>
     </button>
-      <AccordionDetails details={props.details} clicked={props.clicked} id={props.id} clickedId={props.clickedId}/>
+      <AccordionDetails details={props.details} isOpen={props.id === props.clickedBtnId} clicked={props.clicked}/>
   </li>
   );
 }
 
 function AccordionDetails(props) {
-  const classname = props.clicked === true
-    ? 'not-hidden'
-    : 'hidden';
-
-  return <p className={classname}>{props.details}</p>;
-
-  // if (props.id !== props.clickedId) {
-  // classname = hidden
-  // classname = not-hidden
-  // }
-  // let classname;
-  // if (props.clicked === true && props.id === props.clickedId) {
-  //   classname = 'not-hidden';
-  // }
-  // classname = 'hidden';
-
-  // if (props.clicked === true) {
-  //   return (
-  //     <p className={classname}>{props.details}</p>
-  //   );
-  // }
-  // <p className={classname}>{props.details}</p>;
+  if (props.isOpen && props.clicked) {
+    return <p>{props.details}</p>;
+  }
 }
+
+// buttonId: parseInt(event.currentTarget.id) wasted hours because the return was a string and not a number. THANKS REACT DEV TOOLS
