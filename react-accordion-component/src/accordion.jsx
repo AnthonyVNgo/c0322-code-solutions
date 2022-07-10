@@ -11,10 +11,16 @@ export default class Accordion extends React.Component {
   }
 
   handleClick(event) {
-    this.setState({
-      clicked: !this.state.clicked,
-      buttonId: parseInt(event.currentTarget.id)
-    });
+    if (this.state.buttonId === parseInt(event.currentTarget.id)) {
+      this.setState({
+        clicked: !this.state.clicked
+      });
+    } else {
+      this.setState({
+        clicked: true,
+        buttonId: parseInt(event.currentTarget.id)
+      });
+    }
   }
 
   render() {
