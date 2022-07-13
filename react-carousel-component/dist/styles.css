@@ -5,9 +5,24 @@
   height: 100vh;
 }
 
+.column {
+  background-color: lightcoral;
+  width: 50%;
+  height: 50%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  background-color: lightblue;
+  height: 90%;
+  width: 50%;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  background-color: lightgreen;
 }

@@ -9,18 +9,21 @@ export default class Carousel extends React.Component {
   render() {
     return (
       <div className="container">
-        <ul>
-          {
-            this.props.urls.map((url, index) => {
-              return (
-                <CarouselImage
-                  key={index}
-                  id={url.id}
-                />
-              );
-            })
-          }
-        </ul>
+        <div className='column'>
+          <ul>
+            {
+              this.props.urls.map((url, index) => {
+                return (
+                  <CarouselImage
+                    key={index}
+                    id={url.id}
+                    url={url.url}
+                  />
+                );
+              })
+            }
+          </ul>
+        </div>
       </div>
     );
   }
@@ -29,7 +32,8 @@ export default class Carousel extends React.Component {
 function CarouselImage(props) {
   return (
     <li>
-      <p>image goes here</p>
+      {/* <p>image goes here</p> */}
+      <img src={props.url} />
     </li>
   );
 }
