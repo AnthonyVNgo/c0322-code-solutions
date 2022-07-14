@@ -51,9 +51,23 @@ export default class Carousel extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='column'>
-          <ul>
+      <div className='container row justify-content-center align-items-center'>
+        <div className='column position-relative border-radius-5'>
+          <div className='row position-absolute bottom-0 width-100 height-100'>
+            <div className='width-100 align-self-center '>
+              <div className='width-100'>
+                <div className='row justify-content-center align-items-center space-between'>
+                  <button onClick={this.decrementClick}>
+                    <i className="fa-solid fa-chevron-left"></i>
+                  </button>
+                  <button onClick={this.incrementClick}>
+                    <i className="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul className='carousel-ul'>
             {
               this.props.urls.map((url, index) => {
                 return (
@@ -67,26 +81,22 @@ export default class Carousel extends React.Component {
               })
             }
           </ul>
-          <button onClick={this.decrementClick}>
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-          <button onClick={this.incrementClick}>
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
-          <ul className='inline'>
-            {
-              this.props.urls.map((url, index) => {
-                return (
-                  <Dots
-                    key={url.id}
-                    id={url.id}
-                    display={this.state.carouselImageId === url.id}
-                    onClick={this.dotClick}
-                  />
-                );
-              })
-            }
-          </ul>
+          <div className='row justify-content-center align-items-center position-absolute bottom-1 left-0 width-100'>
+            <ul className='inline'>
+              {
+                this.props.urls.map((url, index) => {
+                  return (
+                    <Dots
+                      key={url.id}
+                      id={url.id}
+                      display={this.state.carouselImageId === url.id}
+                      onClick={this.dotClick}
+                    />
+                  );
+                })
+              }
+            </ul>
+          </div>
         </div>
       </div>
     );
@@ -96,8 +106,8 @@ export default class Carousel extends React.Component {
 function CarouselImage(props) {
   if (props.display === true) {
     return (
-    <li>
-      <img src={props.url} />
+    <li className='img-li'>
+      <img className='width-100' src={props.url} />
     </li>
     );
   }
