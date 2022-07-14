@@ -95,9 +95,8 @@ function Dots(props) {
   const dotClass = props.display
     ? 'fa-solid fa-circle'
     : 'fa-solid fa-circle-dot';
-
   return (
-    <li onClick={props.onClick}>
+    <li id={props.id} onClick={props.onClick}>
       <i className={dotClass}></i>
     </li>
   );
