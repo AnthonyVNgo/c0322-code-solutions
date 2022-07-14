@@ -12,7 +12,7 @@ export default class Carousel extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ listLength: this.props.urls.length });
+    this.setState({ listLength: this.props.urls.length - 1 });
   }
 
   incrementClick(event) {
@@ -35,6 +35,20 @@ export default class Carousel extends React.Component {
     const carouselImageId = this.state.carouselImageId;
     return (
       <div>
+        <ul>
+          {
+            this.props.urls.map((url, index) => {
+              return (
+                <CarouselImage
+                  key={index}
+                  id={url.id}
+                  url={url.url}
+                  display={this.state.carouselImageId === url.id}
+                />
+              );
+            })
+          }
+        </ul>
         <p>{carouselImageId}</p>
         <button onClick={this.decrementClick}>
           left
@@ -47,35 +61,20 @@ export default class Carousel extends React.Component {
   }
 }
 
-// function CarouselImage(props) {
-//   return (
-//     <li>
-//       <img src={props.url} />
-//     </li>
-//   );
+function CarouselImage(props) {
+  if (props.display === true) {
+    return (
+    <li>
+      <img src={props.url} />
+    </li>
+    );
+  }
+}
+
+// function Dots(props) {
+
 // }
 /* <div className="container">
   <div className='column'>
-    <ul>
-      {
-        this.props.urls.map((url, index) => {
-          return (
-            <CarouselImage
-              key={index}
-              id={url.id}
-              url={url.url}
-            />
-          );
-        })
-      }
-    </ul>
-  </div>
-  <div>
-    <button>
-      left
-    </button>
-    <button>
-      right
-    </button>
   </div>
 </div> */
