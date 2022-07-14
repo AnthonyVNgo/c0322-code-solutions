@@ -14,6 +14,7 @@ export default class Carousel extends React.Component {
 
   componentDidMount() {
     this.setState({ listLength: this.props.urls.length - 1 });
+    this.autoStep();
   }
 
   incrementClick(event) {
@@ -34,6 +35,10 @@ export default class Carousel extends React.Component {
 
   dotClick(event) {
     this.setState({ carouselImageId: parseInt(event.currentTarget.id) });
+  }
+
+  autoStep() {
+    this.intervalID = setInterval(this.incrementClick, 3000);
   }
 
   render() {
