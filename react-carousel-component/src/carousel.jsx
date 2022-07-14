@@ -23,6 +23,7 @@ export default class Carousel extends React.Component {
     } else if (this.state.listLength !== this.state.carouselImageId) {
       this.setState({ carouselImageId: this.state.carouselImageId + 1 });
     }
+    this.stopInterval();
   }
 
   decrementClick(event) {
@@ -31,14 +32,21 @@ export default class Carousel extends React.Component {
     } else if (this.state.carouselImageId !== 0) {
       this.setState({ carouselImageId: this.state.carouselImageId - 1 });
     }
+    this.stopInterval();
   }
 
   dotClick(event) {
     this.setState({ carouselImageId: parseInt(event.currentTarget.id) });
+    this.stopInterval();
   }
 
   autoStep() {
     this.intervalID = setInterval(this.incrementClick, 3000);
+  }
+
+  stopInterval() {
+    clearInterval(this.intervalID);
+    this.autoStep();
   }
 
   render() {
