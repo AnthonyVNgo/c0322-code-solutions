@@ -50,45 +50,44 @@ export default class Carousel extends React.Component {
   }
 
   render() {
-    const carouselImageId = this.state.carouselImageId;
     return (
-      <div>
-        <ul>
-          {
-            this.props.urls.map((url, index) => {
-              return (
-                <CarouselImage
-                  key={url.id}
-                  id={url.id}
-                  url={url.url}
-                  display={this.state.carouselImageId === url.id}
-                />
-              );
-            })
-          }
-        </ul>
-        <p>{carouselImageId}</p>
-        <button onClick={this.decrementClick}>
-          left
-        </button>
-        <button onClick={this.incrementClick}>
-          right
-        </button>
-
-        <ul className='inline'>
-          {
-            this.props.urls.map((url, index) => {
-              return (
-                <Dots
-                  key={url.id}
-                  id={url.id}
-                  display={this.state.carouselImageId === url.id}
-                  onClick={this.dotClick}
-                />
-              );
-            })
-          }
-        </ul>
+      <div className='container'>
+        <div className='column'>
+          <ul>
+            {
+              this.props.urls.map((url, index) => {
+                return (
+                  <CarouselImage
+                    key={url.id}
+                    id={url.id}
+                    url={url.url}
+                    display={this.state.carouselImageId === url.id}
+                  />
+                );
+              })
+            }
+          </ul>
+          <button onClick={this.decrementClick}>
+            <i className="fa-solid fa-chevron-left"></i>
+          </button>
+          <button onClick={this.incrementClick}>
+            <i className="fa-solid fa-chevron-right"></i>
+          </button>
+          <ul className='inline'>
+            {
+              this.props.urls.map((url, index) => {
+                return (
+                  <Dots
+                    key={url.id}
+                    id={url.id}
+                    display={this.state.carouselImageId === url.id}
+                    onClick={this.dotClick}
+                  />
+                );
+              })
+            }
+          </ul>
+        </div>
       </div>
     );
   }
