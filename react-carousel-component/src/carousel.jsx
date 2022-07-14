@@ -9,6 +9,7 @@ export default class Carousel extends React.Component {
     };
     this.incrementClick = this.incrementClick.bind(this);
     this.decrementClick = this.decrementClick.bind(this);
+    this.dotClick = this.dotClick.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,10 @@ export default class Carousel extends React.Component {
     } else if (this.state.carouselImageId !== 0) {
       this.setState({ carouselImageId: this.state.carouselImageId - 1 });
     }
+  }
+
+  dotClick(event) {
+    this.setState({ carouselImageId: parseInt(event.currentTarget.id) });
   }
 
   render() {
@@ -65,6 +70,7 @@ export default class Carousel extends React.Component {
                   key={url.id}
                   id={url.id}
                   display={this.state.carouselImageId === url.id}
+                  onClick={this.dotClick}
                 />
               );
             })
@@ -91,12 +97,8 @@ function Dots(props) {
     : 'fa-solid fa-circle-dot';
 
   return (
-    <li>
+    <li onClick={props.onClick}>
       <i className={dotClass}></i>
     </li>
   );
 }
-/* <div className="container">
-  <div className='column'>
-  </div>
-</div> */
