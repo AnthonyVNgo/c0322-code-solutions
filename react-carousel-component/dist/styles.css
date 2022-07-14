@@ -26,3 +26,7 @@ img {
   object-fit: contain;
   background-color: lightgreen;
 }
+
+.inline li {
+  display: inline-block;
+}

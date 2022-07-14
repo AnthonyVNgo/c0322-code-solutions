@@ -40,7 +40,7 @@ export default class Carousel extends React.Component {
             this.props.urls.map((url, index) => {
               return (
                 <CarouselImage
-                  key={index}
+                  key={url.id}
                   id={url.id}
                   url={url.url}
                   display={this.state.carouselImageId === url.id}
@@ -56,6 +56,20 @@ export default class Carousel extends React.Component {
         <button onClick={this.incrementClick}>
           right
         </button>
+
+        <ul className='inline'>
+          {
+            this.props.urls.map((url, index) => {
+              return (
+                <Dots
+                  key={url.id}
+                  id={url.id}
+                  display={this.state.carouselImageId === url.id}
+                />
+              );
+            })
+          }
+        </ul>
       </div>
     );
   }
@@ -71,9 +85,17 @@ function CarouselImage(props) {
   }
 }
 
-// function Dots(props) {
+function Dots(props) {
+  const dotClass = props.display
+    ? 'fa-solid fa-circle'
+    : 'fa-solid fa-circle-dot';
 
-// }
+  return (
+    <li>
+      <i className={dotClass}></i>
+    </li>
+  );
+}
 /* <div className="container">
   <div className='column'>
   </div>
