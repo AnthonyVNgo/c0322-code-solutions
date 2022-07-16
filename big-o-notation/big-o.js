@@ -4,41 +4,41 @@ function uniqueLinear(words) {
   const seen = {};                  // 1 * 1 = O(1) declaring / assigning a variable = 1 simple operation
   const unique = [];                // 1 * 1 = O(1) declaring / assigning a variable = 1 simple operation
   for (
-    let i = 0;                      // 1 * 1 = O(?) declaring / assigning a variable = 1 simple operation
-    i < words.length;               // 2 * n = O(?) single-step expression + object property access = 2 simple operations
-    i++                             // 1 * n = O(?) single-step operation = 1 simple operation (why is this considered 2 simple operations in the example if i++ is equal to i + 1, which would be a single-step expression?)
+    let i = 0;                      // 1 * 1 = O(1) declaring / assigning a variable = 1 simple operation
+    i < words.length;               // 2 * n = O(n) single-step expression + object property access = 2 simple operations
+    i++                             // 1 * n = O(n) single-step expression = 1 simple operation (why is this considered 2 simple operations in the example if i++ is equal to i + 1, which would be a single-step expression?)
   ) {
-    const word = words[i];          // 2 * n = O(?) declaring / assigning a variable + array index access = 2 simple operations
-    if (!seen[word]) {              // 3 * n = O(?) truth test + single-step operation (bang logical operator) + array index access = 3 simple operations
+    const word = words[i];          // 2 * n = O(n) declaring / assigning a variable + array index access = 2 simple operations
+    if (!seen[word]) {              // 3 * n = O(n) truth test + single-step expression (bang logical operator) + array index access = 3 simple operations
       seen[word] = true;
-      unique[unique.length] = word; // 3 * _ = O(?) array index access + object property access + assigning a variable = 3 simple operations
+      unique[unique.length] = word; // 3 * n = O(n) array index access + object property access + assigning a variable = 3 simple operations
     }
   }
   return unique;
-} // Big O Notation for uniqueLinear: O(?)
+} // Big O Notation for uniqueLinear: O(n)
 
 function uniqueQuadratic(words) {
-  const unique = [];                // _ * _ = O(?)
+  const unique = [];                // 1 * 1 = O(?) declaring / assigning a variable = 1 simple operation
   for (
-    let i = 0;                      // _ * _ = O(?)
-    i < words.length;               // _ * _ = O(?)
-    i++                             // _ * _ = O(?)
+    let i = 0;                      // 1 * 1 = O(?) declaring / assigning a variable = 1 simple operation
+    i < words.length;               // 2 * n = O(?) single-step expression + object property access = 2 simple operations
+    i++                             // 1 * n = O(?) single-step expression = 1 simple operation
   ) {
-    const word = words[i];          // _ * _ = O(?)
-    let isUnique = true;            // _ * _ = O(?)
+    const word = words[i];          // 2 * n = O(?) declaring / assigning a variable + array index access = 2 simple operations
+    let isUnique = true;            // 1 * 1 = O(?) declaring / assigning a variable = 1 simple operation
     for (
-      let c = 0;                    // _ * _ = O(?)
-      c < i;                        // _ * _ = O(?)
-      c++                           // _ * _ = O(?)
+      let c = 0;                    // 1 * n = O(?) declaring / assigning a variable = 1 simple operation
+      c < i;                        // 1 * n^2 = O(?) single-step expression = 1 simple operation
+      c++                           // 1 * n^2 = O(?) single-step expression = 1 simple operation
     ) {
-      const comparing = words[c];   // _ * _ = O(?)
-      if (comparing === word) {     // _ * _ = O(?)
-        isUnique = false;           // _ * _ = O(?)
+      const comparing = words[c];   // 2 * n^2 = O(?) declaring / assigning a variable + array index acces = 2 simple operations
+      if (comparing === word) {     // 2 * n^2 = O(?) truth test + single-step expression = 2 simple operations
+        isUnique = false;           // 1 * n^2 = O(?) assigning a variable = 1 simple operation
       }
     }
-    if (isUnique) {                 // _ * _ = O(?)
-      unique[unique.length] = word; // _ * _ = O(?)
+    if (isUnique) {                 // 1 * 1 = O(?) truth test = 1 simple operation
+      unique[unique.length] = word; // 3 * _ = O(?) array index access + object property access + assigning a variable = 3 simple operations
     }
   }
-  return unique;                    // _ * _ = O(?)
-} // Big O Notation for uniqueQuadratic: O(?)
+  return unique;                    // 1 * 1 = O(1)
+} // Big O Notation for uniqueQuadratic: O(n^2)
